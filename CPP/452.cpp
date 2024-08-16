@@ -1,4 +1,5 @@
 /*
+LeetCode 452 贪心 
 有一些球形气球贴在一堵用 XY 平面表示的墙面上。
 墙面上的气球记录在整数数组 points ，其中points[i] = [xstart, xend] 表示水平直径在 xstart 和 xend之间的气球。你不知道气球的确切 y 坐标。
 一支弓箭可以沿着 x 轴从不同点 完全垂直 地射出。
@@ -41,48 +42,96 @@ points[i].length == 2
 #include<vector>
 using namespace std;
 
-/* 贪心+双指针 */
-// 手动写判定方法 
+/* 贪心+双指针 解题关键在于先排序*/
+// 手动写判定方法  
 bool compare(const vector<int> &a, const vector<int> &b){
 	return a[0]<b[0];
 }
 
+void  printPoints(const std::vector<std::vector<int> >& points) {
+    for (const auto& point : points) {
+        for (int value : point) {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl; // 每行后换行
+    }
+    std::cout << std::endl; // 每行后换行
+}
+
 class Solution {
 public:
-    int findMinArrowShots(vector<vector<int> >& points) {
-		if(points.size()==0)
+	//解法一复杂了，完全模拟 
+//    int findMinArrowShots(vector<vector<int> >& points) {
+//		if(points.size()==0)
+//			return 0;
+//			
+//		printPoints(points);
+//		sort(points.begin(), points.end(), compare);
+//		printPoints(points);
+//		
+//		int left=points[0][0];
+//		int right=points[0][1];
+//		int result = 1;
+//		
+//		for(int i=1;i<points.size();i++){
+//			if(points[i][0]<=right){
+//				left=points[i][0];
+//				if(points[i][1]<right){
+//					right=points[i][1];
+//				}
+//			}
+//			else{
+//				result++;
+//				left=points[i][0];
+//				right=points[i][1];
+//			}
+//		}
+//		
+//		return result;
+//    }
+
+	//解法二：排序+贪心 
+	int findMinArrowShots(vector<vector<int> >& points) {
+		if(points.empty())
 			return 0;
-		sort(points.begin(), points.end(), compare);
 		
-		int left=points[0][0];
-		int right=points.end()[1];
+		printPoints(points);
+		sort(points.begin(), points.end(), [](const vector<int> &a, const vector<int> &b){
+			return a[0]>b[0];
+		});	//使用虚函数 C++ 
+		printPoints(points);
+		int arrow=points[0][0];
 		int result = 1;
 		
-		for(int i=0;i<points.size();i++){
-			if(points[i][0]>left&&){
-				right=;
+		for(const vector<int>& balloon: points)
+			if(balloon[1]<arrow){
+				arrow=balloon[0];
+				result++;
 			}
-		}
 		
 		return result;
     }
 };
 
 int main(){
-	vector<vector<int> > points;
-	vector<int> p0, p1, p2, p3;
-	p0.push_back(10);
-	p0.push_back(16);
-	p1.push_back(2);
-	p1.push_back(8);
-	p2.push_back(1);
-	p2.push_back(6);
-	p3.push_back(7);
-	p3.push_back(12);
-	points.push_back(p0);
-	points.push_back(p1);
-	points.push_back(p2);
-	points.push_back(p3);
+	std::vector<std::vector<int>> points = {
+        {3,9},{7,10},{3,8},{6,8},{9,12},{2,9},{0,9},{3,9},{0,6},{2,8}
+    };
+//	vector<vector<int> > points;
+//	vector<int> p0, p1, p2, p3;
+////	p0.push_back(1);
+////	p0.push_back(2);
+////	p1.push_back(3);
+////	p1.push_back(4);
+////	p2.push_back(5);
+////	p2.push_back(6);
+////	p3.push_back(7);
+////	p3.push_back(8);
+//
+//	points.push_back(p0);
+//	points.push_back(p1);
+//	points.push_back(p2);
+//	points.push_back(p3);
 	
 	Solution solution;
 	printf("%d\n", solution.findMinArrowShots(points));
