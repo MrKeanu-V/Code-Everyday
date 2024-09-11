@@ -13,3 +13,12 @@
 # devC++ runtime binary
 *.exe
 
+# VC
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build&Debug results
+Build/*
+Debug/*

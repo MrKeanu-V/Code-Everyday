@@ -51,6 +51,14 @@ int main(){
 	Solution solution;
 	cout<<solution.maxProfitDP(nums)<<endl;
 	
+	double xMin = 9;
+    double xMax = 14;
+    double xSpace = 1;
+
+    double yMin = 30;
+    double yMax = 80;
+    double ySpace =10;
+	
 	return 0;
 }
 
