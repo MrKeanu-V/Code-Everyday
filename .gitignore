@@ -21,9 +21,9 @@
 *.sln
 *.vcxproj
 *.filters
-**/.vs/
+*/.vs/
 
 
 # Build&Debug results
-**/Build/
-**/Debug/
+*/Build/
+*/Debug/
