@@ -12,22 +12,42 @@ using namespace std;
 
 class Solution {
 public:
+	bool isContain(vector<int>& tcount, vector<int>& need) {
+		for (int i = 0; i < 128; i++)
+			if (tcount[i] > need[i])
+				return false;
+		
+		return true;
+	}
+
 	// 解法一：滑动窗口
 	string minWindow(string s, string t) {
-		if(s.size() < t.size()) return "";	// 细节
-		unordered_map<char, pair<int, int>> smap, tmap;	// 统计t的字符出现个数和索引
-		for (int i = 0; i < t.size(); i++) {
-			smap[s[i]].first++;
-			tmap[t[i]].first++;
+		if (s.empty() || s.size() < t.size()) return "";
+		int left = 0, right = 0, minLen = s.size() + 1, minLeft = 0;
+		vector<int> tcount(128, 0), need(128, 0);
+		for (auto& c : t)
+			tcount[c]++;
+		
+		while (right < s.size()) {
+			need[s[right]]++;
+			while (isContain(tcount, need)) {
+				if (right - left + 1 < minLen) {
+					minLeft = left;
+					minLen = right - left + 1;
+				}
+				need[s[left]]--;
+				left++;
+			}
+			right++;
 		}
-		vector<char> window;
-		int left = 0, right = t.size() - 1, minLen = t.size();
+
+		return minLen == s.size() +1?"":s.substr(minLeft, minLen);
 	}
 };
 
 int main() {
-	Solution s;
+	Solution sln;
 	string s = "ADOBECODEBANC", t = "ABC";
-	cout << s.minWindow(s, t) << endl;
+	cout << sln.minWindow(s, t) << endl;
 	return 0;
 }
