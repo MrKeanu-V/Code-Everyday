@@ -19,7 +19,7 @@ using namespace std;
 */
 class Solution {
 private:
-	vector<vector<int>> neighbors = { { 1, 3 }, { 0, 2, 4 }, { 1, 5 }, { 0, 4 }, { 1, 3, 5 }, { 2, 4 } };
+	vector<vector<int>> neighbors = { { 1, 3 }, { 0, 2, 4 }, { 1, 5 }, { 0, 4 }, { 1, 3, 5 }, { 2, 4 } };	// 网边图，本质为二维矩阵在一维的索引映射
 public:
 	// BFS + Hash Set 
 	int slidingPuzzle(vector<vector<int>>& board) {
