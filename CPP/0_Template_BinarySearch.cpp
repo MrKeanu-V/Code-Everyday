@@ -6,6 +6,7 @@
 	3. 时间复杂度：O(logn)
 	4. 空间复杂度：O(1)
 	5. 二分查找在STL一般命名为low_bound和high_bound，分别表示大于等于和大于目标值的第一个位置。
+	6. 二分查找的细节是或者说难点是二分查找的边界问题，即left和right的更新！
 */
 //#include <bits/stdc++.h> // GNU C++ specific, not allowed in MSVC
 #include <iostream>
