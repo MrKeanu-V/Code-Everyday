@@ -33,20 +33,34 @@ int lower_bound(vector<int>& nums, int target) {	// 闭区间
 
 int lower_bound2(vector<int>& nums, int target) {	// 左闭右开
 	int left = 0, right = (int)nums.size();
-	while (left <= right) {
+	while (left < right) {	// 区间不能为空
 		int mid = left + (right - left) / 2;	// 范围缩小到 [mid+1, right)
 		if (nums[mid] < target) left = mid + 1;	// 范围缩小到 [left, mid)
 		else right = mid;
 	}
-	return left;
+	return left; //	左右都可，结束结果为left==right
 }
 
 int lower_bound3(vector<int>& nums, int target) {	// 开区间
-	int left = 0, right = (int)nums.size();
-	while (left <= right) {
+	int left = -1, right = (int)nums.size();
+	while (left+1 < right) {
 		int mid = left + (right - left) / 2;
-		if (nums[mid] < target) left = mid;	// 范围缩小到 (mid, right)
-		else right = mid;	// 范围缩小到 (left, mid)
+		(nums[mid] < target) ? left = mid : right = mid;
 	}
-	return left;
+	return right;
 }
+
+// C++11 引入的STL库
+int example(vector<int>& nums, int target) {
+	int prePos = std::lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+	int nextPos = nums.end() - std::upper_bound(nums.begin(), nums.end(), target);
+	return 0;
+}
+
+// C++20 引入ranges库， 包含上下二分和count_if、fileter、for_each、transform等函数
+int example2(vector<int>& nums, int target) {
+	//int prePos = std::ranges::lower_bound(nums, target) - nums.begin();
+	//int nextPos = std::ranges::upper_bound(nums, target) - nums.begin();
+	return 0;
+}
+

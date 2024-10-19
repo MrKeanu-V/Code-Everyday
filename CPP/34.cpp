@@ -10,6 +10,15 @@ using namespace std;
 class Solution {
 private:
 	int lowerBound(vector<int>& nums, int target) {
+		int left = -1, right = (int)nums.size();
+		while (left+1 < right) {
+			int mid = left + (right - left) / 2;
+			//(nums[mid] < target ? left : right) = mid;
+			(nums[mid] < target) ? left = mid : right = mid;
+		}
+		return right;
+	}
+	int lowerBound1(vector<int>& nums, int target) {
 		int left = 0, right = nums.size() - 1;
 		while (left <= right) {
 			int mid = left + (right - left) / 2;	// 以左为边界
@@ -18,16 +27,25 @@ private:
 		}
 		return left;
 	}
+	int lowerBound2(vector<int>& nums, int target) {
+		int left = 0, right = (int)nums.size();
+		while (left < right) {
+			int mid = left + (right - left) / 2;	// 范围缩小到 [mid+1, right)
+			if (nums[mid] < target) left = mid + 1;	// 范围缩小到 [left, mid)
+			else right = mid;
+		}
+		return left;
+	}
 public:
 	// 二分查找 变体
-	vector<int> searchRange1(vector<int>& nums, int target) {
+	vector<int> searchRange(vector<int>& nums, int target) {
 		int left = lowerBound(nums, target);
 		if (left == nums.size() || nums[left] != target) return { -1,-1 };
 		int right = lowerBound(nums, target + 1) - 1;
 		return { left,right };
 	}
 
-	vector<int> searchRange(vector<int>& nums, int target) {
+	vector<int> searchRange2(vector<int>& nums, int target) {
 		vector<int> res(2, -1);
 		int left = 0, right = nums.size() - 1;
 		while (left <= right) {
