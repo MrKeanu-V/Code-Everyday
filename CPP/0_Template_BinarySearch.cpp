@@ -7,6 +7,10 @@
 	4. 空间复杂度：O(1)
 	5. 二分查找在STL一般命名为low_bound和high_bound，分别表示大于等于和大于目标值的第一个位置。
 	6. 二分查找的细节是或者说难点是二分查找的边界问题，即left和right的更新！
+	
+	如何判断一道题是否可以使用二分查找？
+	1. 二分查找通常用于在有序数组中查找一个数或范围
+	2. 二分查找通常需要满足以下条件：1) 目标函数单调性；2) 存在上下界；3) 能够通过索引访问
 */
 //#include <bits/stdc++.h> // GNU C++ specific, not allowed in MSVC
 #include <iostream>
