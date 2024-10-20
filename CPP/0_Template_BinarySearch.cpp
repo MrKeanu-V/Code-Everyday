@@ -50,9 +50,9 @@ int lower_bound3(vector<int>& nums, int target) {	// 开区间
 	return right;
 }
 
-// C++11 引入的STL库
+// C++11 引入的algorithm库
 int example(vector<int>& nums, int target) {
-	int prePos = std::lower_bound(nums.begin(), nums.end(), target) - nums.begin();
+	int prePos = lower_bound(nums.begin(), nums.end(), target) - nums.begin();
 	int nextPos = nums.end() - std::upper_bound(nums.begin(), nums.end(), target);
 	return 0;
 }
