@@ -18,7 +18,7 @@ using namespace std;
 
 class Solution {
 public:
-	int minOperations1(vector<int>& nums, int target) {
+	int minOperations(vector<int>& nums, int target) {
 		sort(nums.begin(), nums.end(), less<int>());
 		int n = nums.size(), res = 0;
 		long long sum = accumulate(nums.begin(), nums.end(), 0LL);
