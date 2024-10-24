@@ -43,12 +43,12 @@
 #include <utility> // pair
 using namespace std;
 
-// 0/1背包模板
+// 0/1背包模板 核心：DP矩阵+状态转移方程
 int zeroOnePack(vector<int>& weight, vector<int>& value, int capacity) {
 	int n = weight.size();
 	vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));
 	for (int i = 1; i <= n; ++i)
 		for (int j = 1; j <= capacity; ++j)
-			dp[i][j] = nums[i - 1] <= j ? max(dp[i - 1][j], dp[i - 1][j - nums[i - 1]] + 1) : dp[i - 1][j];
+			dp[i][j] = j >= weight[i] ? max(dp[i - 1][j], dp[i - 1][j - weight[i] + value[i]]) : dp[i - 1][j];
 	return dp[n][capacity];
 }

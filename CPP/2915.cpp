@@ -23,7 +23,7 @@ public:
 		return dp[target] > 0 ? dp[target] : -1;
 	}
 	// 解法二 二维01背包 WA
-	int lenghtOfLongestSubsequence(vector<int>& nums, int target) {
+	int lenghtOfLongestSubsequence2(vector<int>& nums, int target) {
 		int n = nums.size();
 		vector<vector<int>> dp(n + 1, vector<int>(target + 1, 0));
 		for (int i = 1; i <= n; ++i)
@@ -31,12 +31,21 @@ public:
 				dp[i][j] = nums[i-1] <= j ? max(dp[i-1][j], dp[i-1][j - nums[i-1]] + 1) : dp[i-1][j];
 		return dp[n][target] > 0 ? dp[n][target] : -1;
 	}
+	int lenghtOfLongestSubsequence(vector<int>& nums, int target) {
+		int n = nums.size();
+		vector<vector<int>> dp(n + 1, vector<int>(target + 1, INT_MIN));
+		dp[0][0] = 0;
+		for (int i = 0; i < n; ++i)
+			for (int j = 0; j <= target; ++j)
+				dp[i + 1][j] = j >= nums[i] ? max(dp[i][j], dp[i][j - nums[i]] + 1) : dp[i][j];
+		return dp[n][target] > 0 ? dp[n][target] : -1;
+	}
 };
 
 int main() {
 	Solution sln;
-	vector<int> nums = { 1, 2, 3, 4, 5 };
-	int target = 9;
+	vector<int> nums = { 1,2,3,4,5 };// { 1, 1, 5, 4, 5 };
+	int target = 9; // 3
 	cout << sln.lenghtOfLongestSubsequence(nums, target) << endl;
 	return 0;
 }
