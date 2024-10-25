@@ -44,6 +44,7 @@
 using namespace std;
 
 // 0/1背包模板 核心：DP矩阵+状态转移方程
+// 背包问题的难点在于将问题抽象为DP问题，并找到状态转移方程。以背包问题而言，重点是找到物品的选择成本和价值。
 int zeroOnePack(vector<int>& weight, vector<int>& value, int capacity) {
 	int n = weight.size();
 	vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));
@@ -51,4 +52,25 @@ int zeroOnePack(vector<int>& weight, vector<int>& value, int capacity) {
 		for (int j = 1; j <= capacity; ++j)
 			dp[i][j] = j >= weight[i] ? max(dp[i - 1][j], dp[i - 1][j - weight[i] + value[i]]) : dp[i - 1][j];
 	return dp[n][capacity];
+}
+// 多维01背包模板 示例474. 一和零
+int multiDimensionalZeroOnePack(vector<string>& strs, int m, int n) {
+	// DP数组
+	vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+	// value数组 first:'0' second:'1'
+	vector<pair<int, int>> values(strs.size() + 1);
+	for (int i = 0; i < strs.size(); ++i) {
+		pair<int, int> p(count_if(strs[i].begin(), strs[i].end(), [](char c) { return c == '0'; }), 0);
+		p.first = strs[i].size() - p.first;
+		values[i + 1] = p;
+	}
+	// 多维DP
+	for (int i = 1; i < strs.size() + 1; ++i) {
+		for (int j = m; j >= values[i].first; --j) {
+			for (int k = n; k >= values[i].second; --k) {
+				dp[j][k] = max(dp[j][k], dp[j - values[i].first][k - values[i].second] + 1);
+			}
+		}
+	}
+	return dp[m][n];
 }
