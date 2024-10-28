@@ -16,23 +16,24 @@
 using namespace std;
 
 //class Solution {
-//private:
-//	stack<char> stk;
-//	int getScorce(string str, int index) {
-//		if (index >= str.size()) return 0;
-//		cout << "index:" << index << " char" << str[index] <<" size:"<< str.size() << endl;
-//		if (str[index] == ')') {
-//
-//		}
-//		else if (str[index] == '(') {
-//			stk.push('(');
-//			return 1 + getScorce(str, index + 1);
-//		}
-//		return getScorce(str, index + 1);
-//	}
 //public:
 //	int getScorce(string str) {
-//		return getScorce(str, 0);
+//		stack<int> stk;
+//		int value = 0;
+//        for (char ch : str) {
+//            if (ch == '(') {
+//                // 如果遇到'('，将当前的value压栈
+//                stk.push(value);
+//                value = 0; // 重置value，为新的子字符串做准备
+//            }
+//            else if (ch == ')') {
+//                // 如果遇到')'，计算子字符串的值
+//                int temp = value * 2; // 根据规律2，乘以2
+//                value = stk.top() + temp; // 根据规律3，加上栈顶的值
+//                stk.pop(); // 弹出栈顶元素
+//            }
+//        }
+//		return value;
 //	}
 //};
 //
