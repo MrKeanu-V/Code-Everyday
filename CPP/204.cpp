@@ -4,6 +4,23 @@
 #include "pub_template.h"
 using namespace pub;
 
+const long mx = 5000000;
+long pi[mx+1];
+auto init = []() {
+    for (long i = 2; i < mx; i++) {
+        if (pi[i] == 0) {
+            pi[i] = pi[i - 1] + 1;
+            for (long j = i*i; j <= mx; j += i) {
+                pi[j] = -1;
+            }
+        }
+        else {
+            pi[i] = pi[i - 1];
+        }
+    }
+    return 0;
+}();
+
 class Solution {
 public:
     bool isPrime(int n) {
@@ -23,19 +40,23 @@ public:
         return res;
     }
     // 解法二 埃拉托斯特尼筛法 Time: O(nloglogn) Space: O(n)
-    int countPrimes(int n) {
+    int countPrimes_2(int n) {
         int res = 0;
-        vector<bool> isPrime(n, true);
+        vector<bool> ppi(n, true);
         for (int i = 2; i < n; i++) {
-            if (isPrime[i]) {
+            if (ppi[i]) {
                 res++;
                 if ((long long)i * i < n)
                     for (int j = i * i; j < n; j += i) {
-                        isPrime[j] = false;
+                        ppi[j] = false;
                     }
             }
         }
         return res;
+    }
+    int countPrimes(int n) {
+        if (n == 0) return 0;
+        return pi[n - 1];
     }
 
     void test() {
