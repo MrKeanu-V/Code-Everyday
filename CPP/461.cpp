@@ -34,7 +34,7 @@ public:
         return res;
     }
     // 解法三 内置函数
-    int hammingDistance_3(int x, int y) {
+    int hammingDistance_4(int x, int y) {
         //return _builtin_popcount(x ^ y);    // 仅在gcc编译器中有效
         // vc++编译器中需要自己实现
         return -1;

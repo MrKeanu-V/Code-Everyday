@@ -27,7 +27,7 @@ public:
         }
         return shuffled;
     }
-    vector<int> shuffle() {
+    vector<int> shuffle_1() {
         vector<int> result = original;
         for (int i = 0; i < result.size(); ++i) {
             swap(result[i], result[rand() % result.size()]);

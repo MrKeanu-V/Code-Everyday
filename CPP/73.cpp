@@ -57,3 +57,14 @@ public:
 	}
 };
 
+//int main() {
+//	Solution sln;
+//	vector<vector<int>> nums = { {1, 2, 3}, {4, 0, 6}, {7, 8, 9} };
+//	sln.setZeroes(nums);
+//	for (auto& row : nums) {
+//		for (auto& num : row)
+//			cout << num << " ";
+//		cout << endl;
+//	}
+//	return 0;
+//}

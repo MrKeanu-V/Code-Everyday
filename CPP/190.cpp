@@ -7,7 +7,7 @@ using namespace pub;
 class Solution {
 public:
     // 解法一 逐位运算 Time:O(32) Space:O(1)
-    uint32_t reverseBits(uint32_t n) {
+    uint32_t reverseBits_1(uint32_t n) {
         uint32_t ans = 0, i = 32;
         while (i--) {
             ans = (ans << 1) | (n & 1);
