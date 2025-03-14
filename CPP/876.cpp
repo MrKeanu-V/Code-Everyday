@@ -27,10 +27,10 @@ public:
 	}
 };
 
-int main() {
-	Solution sln;
-	ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-	ListNode* mid = sln.middleNode(head);
-	cout << mid->val << endl;
-	return 0;
-}
+//int main() {
+//	Solution sln;
+//	ListNode* head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+//	ListNode* mid = sln.middleNode(head);
+//	cout << mid->val << endl;
+//	return 0;
+//}

@@ -36,7 +36,7 @@ public:
 	}
 	// ½â·¨¶þ µÝ¹é Time:O(n) Space:O(n)
 	ListNode* swapPairs(ListNode* head) {
-		if (head || head->next) return head;
+		if (!head || !head->next) return head;
 		ListNode* node1 = head, * node2 = head->next;
 		ListNode* node3 = node2->next;
 		node1->next = swapPairs(node3);
