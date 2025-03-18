@@ -101,24 +101,26 @@ public:
         list2->next = mergeTwoLists(list1, list2->next);
         return list2;
     }
+    void printList(ListNode* root) {
+        while (root) {
+            cout << root->val << " ";
+            root = root->next;
+        }
+        cout << endl;
+    }
+    void test() {
+        ListNode* list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
+        ListNode* list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
+        ListNode* root = Solution().mergeTwoLists(list1, list2);
+        printList(list1);
+        printList(list2);
+        printList(root);
+    }
 };
 
-void printList(ListNode* root) {
-    while (root) {
-        cout << root->val << " ";
-        root = root->next;
-    }
-    cout << endl;
-}
 
-void test() {
-    ListNode* list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
-    ListNode* list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
-    ListNode* root = Solution().mergeTwoLists(list1, list2);
-    printList(list1);
-    printList(list2);
-    printList(root);
-}
+
+
 
 //int main() {
 //    test();
