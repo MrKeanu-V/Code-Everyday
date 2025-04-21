@@ -119,24 +119,6 @@ namespace pub {
         return res;
     }
 
-    // 数组打印
-    void print1DVector(vector<int>& nums) {
-        for (auto num : nums) {
-            cout << num << " ";
-        }
-        cout << endl;
-    }
-
-    void print2DVector(vector<vector<int>>& nums) {
-        for (auto& row : nums) {
-            for (auto& num : row) {
-                cout << num << " ";
-            }
-            cout << endl;
-        }
-        cout << endl;
-    }
-
     // Bool转换
     string Bool2Str(bool b) {
         return b ? "true" : "false";
@@ -155,5 +137,16 @@ namespace pub {
         int len = min(s1.length(), s2.length()), i = 0;
         while (i < len && s1[i] == s2[i]) i++;
         return s1.substr(0, i);
+    }
+    // 
+    unsigned int __builtin_ctz(unsigned int val) {
+        unsigned long index; // 用于存储位的位置
+        if (_BitScanForward(&index, val)) {
+            return index;
+        }
+        else {
+            // 对于输入为0的情况，MSVC的行为是未定义的，因此需要特别处理。
+            return 32; // 假设32位无符号整数，返回32表示所有位都是0
+        }
     }
 }

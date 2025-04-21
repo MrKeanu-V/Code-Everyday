@@ -21,6 +21,7 @@
 #include <functional>
 #include <climits>
 #include <cmath>
+#include <intrin.h> // 包含 _BitScanForward
 using namespace std;
 
 namespace pub {
@@ -62,9 +63,23 @@ namespace pub {
     vector<vector<int>> levelOrderTree(TreeNode* root);
 
     // 数组打印
-    void print1DVector(vector<int>& nums);
-
-    void print2DVector(vector<vector<int>>& nums);
+    template<typename T>
+    void printVector1D(const vector<T>& vec) {
+        cout << "[";
+        for (size_t i = 0; i < vec.size(); ++i) {
+            cout << vec[i];
+            if (i != vec.size() - 1) cout << ", ";
+        }
+        cout << "]" << endl;
+    }
+    template<typename T>
+    void printVector2D(const vector<vector<T>>& vec2D) {
+        cout << "[";
+        for (size_t i = 0; i < vec2D.size(); ++i) {
+            printVector1D(vec2D[i]);
+        }
+        cout << "]" << endl;
+    }
 
     // Bool转换
     string Bool2Str(bool b);
@@ -73,5 +88,8 @@ namespace pub {
     int count_one(int n);
     // 最长公共前缀
     string longestCommonPrefix(const string& s1, const string& s2);
+
+    // 位运算相关
+    unsigned int __builtin_ctz(unsigned int val); // 返回n中最低位的1的位置
 }
 
