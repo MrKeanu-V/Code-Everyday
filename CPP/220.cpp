@@ -29,4 +29,19 @@ public:
 		}
 		return false;
 	}
+	// 解法三 桶排序 滑动窗口 Time:O(n) Space:O(min(n, k))
+	bool containsNearbyAlmostDuplicate_3(vector<int>& nums, int indexDiff, int valueDiff) {
+		int n = nums.size(), i = 0;
+		unordered_map<int, int> window;
+		auto getBucketId = [&](int x) { return x < 0 ? (x + 1ll) / (valueDiff + 1ll) - 1 : x / (valueDiff + 1ll); };
+		while (i < n) {
+			int id = getBucketId(nums[i]);
+			if (window.count(id)) return true;
+			if (window.count(id - 1) && nums[i] - window[id - 1] <= valueDiff) return true;
+			if (window.count(id + 1) && window[id + 1] - nums[i] <= valueDiff) return true;
+			window[id] = nums[i++];
+			if (window.size() > indexDiff) window.erase(getBucketId(nums[i - indexDiff - 1]));
+		}
+		return false;
+	}
 };
