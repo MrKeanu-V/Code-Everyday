@@ -91,5 +91,12 @@ namespace pub {
 
     // 位运算相关
     unsigned int __builtin_ctz(unsigned int val); // 返回n中最低位的1的位置
+    
+    // 比较类
+    class GreaterCmp {
+    public:
+        bool operator()(const int& a, const int& b) { return a > b; }
+        bool operator()(const pair<int,int>& a, const pair<int,int>& b) { return a.first > b.first; }
+    };
 }
 

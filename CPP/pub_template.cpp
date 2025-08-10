@@ -1,3 +1,10 @@
+/**
+ * @file pub_template.cpp
+ * @brief framework for pub
+ * 
+ * @GitMsg Template: use file desc, and algorithm category organized by |.
+*  eg: git commit -m "739. Daily Temperatures [Medium - 6 - Brute|MonoStack]"
+*/
 #include "pub_template.h"
 
 namespace pub {
