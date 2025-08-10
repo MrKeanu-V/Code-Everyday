@@ -42,7 +42,7 @@ public:
 		vector<int> nums1 = { 1,3,5,0,0,0 };
 		vector<int> nums2 = {2,3,7};
 		merge(nums1, 3, nums2, 3);
-		print1DVector(nums1);
+		printVector1D(nums1);
 	}
 };
 

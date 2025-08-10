@@ -50,7 +50,7 @@ public:
 		cout << Bool2Str(isSymmetric(root)) << endl;
 
 		nums = { 1,2,2,2,NULL,2 };
-		print1DVector(nums);
+		printVector1D(nums);
 		//root = createTree(nums);
 		inOrderTree(root);
 		cout << Bool2Str(isSymmetric(root)) << endl;

@@ -30,7 +30,7 @@ public:
     void test() {
         string digits = "234";
         vector<string> res = letterCombinations(digits);
-        print1DVector(res);
+        printVector1D(res);
     }
 };
 

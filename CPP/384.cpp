@@ -36,9 +36,9 @@ public:
     }
     void test() {
         vector<int> result = shuffle();
-        print1DVector(result);
+        printVector1D(result);
         result = reset();
-        print1DVector(result);
+        printVector1D(result);
     }
 };
 

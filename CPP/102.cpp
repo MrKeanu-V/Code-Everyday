@@ -74,7 +74,7 @@ public:
         TreeNode* root = createTree(nums);
         printTree(root);
         vector<vector<int>> res = levelOrder(root);
-        print2DVector(res);
+        printVector2D(res);
     }
 };
 
