@@ -22,7 +22,6 @@ public:
 	// Solution1: DFS Time: O(V+E) Space: O(V+E)
 	// 本质上是判断有向图是否存在环，解决思路：1. 构建邻接表 2. DFS遍历图，判断是否存在环
 	bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-		int edgeNum = prerequisites.size();
 		adjList.clear(), visited.clear();	// local use need to clear, resize() do not reset value
 		adjList.resize(numCourses);
 		visited.resize(numCourses, 0);	// 0: unvisited, 1: visiting, 2: visited
