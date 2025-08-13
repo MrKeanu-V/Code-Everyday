@@ -56,6 +56,7 @@ namespace pub {
                 q.push(cur->left);
             }
             i++;
+            if (i >= nums.size()) break;
             if (nums[i] != NULL) {
                 cur->right = new TreeNode(nums[i]);
                 q.push(cur->right);
