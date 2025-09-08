@@ -27,3 +27,5 @@
 # Build&Debug results
 */Build/
 */Debug/
+# Do not need sync
+*/others/
