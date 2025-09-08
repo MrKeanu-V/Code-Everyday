@@ -1,7 +1,8 @@
 /*
 @Author: MrKeanu
 @Date: 2022-05-17 15:16:22
-@Description: 本文件为模板文件，用于存放一些常用的模板函数和模板类
+@Description: This file is a template file, used to store some commonly used template functions and template classes. 
+
 */
 #pragma once
 
@@ -21,11 +22,12 @@
 #include <functional>
 #include <climits>
 #include <cmath>
-#include <intrin.h> // 包含 _BitScanForward
+#include <intrin.h> // _BitScanForward
 using namespace std;
 
-namespace pub {
-    // 单链表
+// Foundation
+namespace fnt {
+    // Singly linked list
     struct ListNode {
         int val;
         ListNode* next;
@@ -40,7 +42,7 @@ namespace pub {
     // 链表打印
     void printList(ListNode* head);
 
-    // 二叉树
+    // Binary tree
     struct TreeNode {
         int val;
         TreeNode* left;
@@ -81,18 +83,18 @@ namespace pub {
         cout << "]" << endl;
     }
 
-    // Bool转换
+    // Bool to string
     string Bool2Str(bool b);
 
-    // 汉明重量
+    // Hanming Weight
     int count_one(int n);
-    // 最长公共前缀
+    // The longest common prefix
     string longestCommonPrefix(const string& s1, const string& s2);
 
-    // 位运算相关
+    // Related to bit operations
     unsigned int __builtin_ctz(unsigned int val); // 返回n中最低位的1的位置
     
-    // 比较类
+    // Comparative type
     class GreaterCmp {
     public:
         bool operator()(const int& a, const int& b) { return a > b; }

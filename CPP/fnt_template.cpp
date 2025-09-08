@@ -1,13 +1,14 @@
 /**
  * @file pub_template.cpp
- * @brief framework for pub
+ * @brief framework for my algorithms problem solving
  * 
  * @GitMsg Template: use file desc, and algorithm category organized by |.
 *  eg: git commit -m "739. Daily Temperatures [Medium - 6 - Brute|MonoStack]"
 */
-#include "pub_template.h"
+#include "fnt_template.h"
 
-namespace pub {
+// Foundation
+namespace fnt {
     // ππ‘Ï¡¥±Ì
     ListNode* createList(vector<int>& nums) {
         if (nums.empty()) return nullptr;
