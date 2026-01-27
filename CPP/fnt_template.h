@@ -39,6 +39,8 @@ namespace fnt {
     ListNode* createList(vector<int>& nums);
     // 删除链表
     ListNode* deleteNode(ListNode* head, int val);
+    // 释放链表
+    void freeList(ListNode* head);
     // 链表打印
     void printList(ListNode* head);
 

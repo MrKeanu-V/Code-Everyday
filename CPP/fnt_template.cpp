@@ -33,6 +33,20 @@ namespace fnt {
         pre->next = cur->next;
         return head;
     }
+	// 释放链表
+	void freeList(ListNode* head){
+		while (head) {
+			ListNode* tmp = head;
+            // 避免重复释放
+            try {
+                head = head->next;
+                delete tmp;
+            }
+            catch (const std::exception& e) {
+                //cout << e.what() << endl;
+            }
+		}
+	}
 
     void printList(ListNode* head) {
         while (head) {
