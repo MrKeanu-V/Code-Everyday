@@ -7,10 +7,10 @@
 #include <iostream>
 
 namespace fnt {
-	const string CMD_EXIT = "exit";
-	const string CMD_RUN = "run";
-	const string CMD_PRINT = "print";
-	const string CMD_CLEAR = "clear";
+	const static string CMD_EXIT = "exit";
+	const static string CMD_RUN = "run";
+	const static string CMD_PRINT = "print";
+	const static string CMD_CLEAR = "clear";
 
 	// Lazy Initialization for avoid Static Initialization Order Fiasco
 	map<string, SolutionFn>& GetSolutionRegistry() {
@@ -32,6 +32,7 @@ namespace fnt {
 		auto& SolutionRegistry = GetSolutionRegistry();
 		if (SolutionRegistry.empty() || SolutionRegistry.find(name) == SolutionRegistry.end()) {
 			cout << "------------- Info: Solution not found! -------------" << endl;
+			return;
 		}
 		SolutionRegistry.erase(name);
 		cout << "------------- Info: Solution unregistered! -------------" << endl;
@@ -41,6 +42,7 @@ namespace fnt {
 		auto& SolutionRegistry = GetSolutionRegistry();
 		if (SolutionRegistry.empty() || SolutionRegistry.find(name) == SolutionRegistry.end()) {
 			cout << "------------- Error: Solution not found! -------------" << endl;
+			return;
 		}
 		cout << "------------- Info: Running solution: " << name << ".cpp -------------" << endl;
 		SolutionRegistry[name]();
@@ -48,11 +50,7 @@ namespace fnt {
 	}
 
 	void EraseSolution(const string& name) {
-		auto& SolutionRegistry = GetSolutionRegistry();
-		if (SolutionRegistry.empty() || SolutionRegistry.find(name) == SolutionRegistry.end()) {
-			cout<<"------------- Error: Solution not found! -------------"<<endl;
-		}
-		SolutionRegistry[name]();
+		UnregisterSolution(name);
 	}
 
 	void RunSolutions() {
@@ -66,7 +64,7 @@ namespace fnt {
 
 	void PrintSolutions() {
 		auto& SolutionRegistry = GetSolutionRegistry();
-		cout << "------------- Info: Available Solutionss: -------------" << endl;
+		cout << "------------- Info: Available Solutions: -------------" << endl;
 		for (auto& pair : SolutionRegistry) {
 			cout << pair.first << ".cpp" << endl;
 		}
@@ -111,13 +109,13 @@ namespace fnt {
 					else ExecuteSolution(solutionName);
 				}
 			}
-			else if (command == "print") {
+			else if (command == CMD_PRINT) {
 				PrintSolutions();
 			}
-			else if (command == "clear") {
+			else if (command == CMD_CLEAR) {
 				ClearSolutions();
 			}
-			else if (command == "exit") {
+			else if (command == CMD_EXIT) {
 				break;
 			}
 			else {
