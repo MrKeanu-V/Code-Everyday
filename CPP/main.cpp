@@ -7,7 +7,5 @@ using namespace fnt;
 
 int main() {
     Run();
-    // Run all Solutions if in need
-    // RunAllSolutions();
     return 0;
 }
