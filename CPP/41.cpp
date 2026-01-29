@@ -5,7 +5,7 @@
 #include "fnt_solution.h"
 using namespace fnt;
 
-class Solution {
+class Solution41 {
 public:
 	// Solution 1: Hash Table, O(n) time, O(1) space
 	int firstMissingPositive(vector<int>& nums) {
@@ -31,7 +31,7 @@ public:
 // RAII Register template
 struct Solution41Register {
 	Solution41Register() {
-		Solution s;
+		Solution41 s;
 		RegisterSolution("41", [&s]() { s.test(); });
 	}
 };
