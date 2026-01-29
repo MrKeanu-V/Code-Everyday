@@ -5,7 +5,7 @@
 #include "fnt_solution.h"
 using namespace fnt;
 
-class Solution
+class Solution25
 {
 public:
     ListNode* reverseKGroup(ListNode* head, int k)
@@ -61,7 +61,7 @@ public:
 // RAII Register
 struct Solution25Register {
     Solution25Register() {
-        Solution s;
+        Solution25 s;
         fnt::RegisterSolution("25", [&s]() { s.test(); });
     }
 };
