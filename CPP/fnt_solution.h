@@ -19,6 +19,15 @@ class_name##Register() { \
 }; \
 static class_name##Register __reg##name;
 
+#define FNT_REGISTER(name) \
+struct SolutionRegister { \
+SolutionRegister() { \
+	Solution##name sln; \
+	fnt::RegisterSolution(std::to_string(name), [&sln] {sln.test(); }); \
+} \
+}; \
+static SolutionRegister __reg##name;
+
 namespace fnt {
 	using SolutionFn = function<void()>;
 	// Register a solution with a name, and return a bool indicating whether the registration was successful.
