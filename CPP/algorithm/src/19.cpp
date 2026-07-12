@@ -1,7 +1,7 @@
 /*
 19. Remove Nth Node From End of List [Medium - 3]
 */
-#include "fnt_template.h"
+#include "fnt_utils.h"
 #include "fnt_solution.h"
 #include <stack>
 using namespace fnt;

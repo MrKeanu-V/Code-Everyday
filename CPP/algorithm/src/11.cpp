@@ -44,10 +44,10 @@ public:
 	}
 };
 
-int main() {
-	Solution s;
-   	vector<int> height = { 1,8,6,2,5,4,8,3,7 };
-	//vector<int> height = { 1,1 };
-    cout << s.maxArea2(height);
-   	return 0;
-}
+// int main() {
+// 	Solution s;
+//    	vector<int> height = { 1,8,6,2,5,4,8,3,7 };
+// 	//vector<int> height = { 1,1 };
+//     cout << s.maxArea2(height);
+//    	return 0;
+// }

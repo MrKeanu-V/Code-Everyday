@@ -62,15 +62,15 @@ public:
 	}
 };
 
-int main() {
-	Solution s;
-	vector<int> nums = { -2,0,0,2,2 };
-	vector<vector<int>> res = s.threeSum2(nums);
-    for (auto& r : res) {
-        for (auto& n : r) {
-            cout << n << " ";
-        }
-        cout << endl;
-    }
-	return 0;
-}
+// int main() {
+// 	Solution s;
+// 	vector<int> nums = { -2,0,0,2,2 };
+// 	vector<vector<int>> res = s.threeSum2(nums);
+//     for (auto& r : res) {
+//         for (auto& n : r) {
+//             cout << n << " ";
+//         }
+//         cout << endl;
+//     }
+// 	return 0;
+// }

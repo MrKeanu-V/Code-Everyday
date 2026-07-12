@@ -1,7 +1,7 @@
 /*
 89. Gray Code [Medium - 5 - Backtrack]
 */
-#include "fnt_template.h"
+#include "fnt_utils.h"
 #include "fnt_solution.h"
 
 class Solution89 {

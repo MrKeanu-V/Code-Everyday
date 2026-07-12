@@ -55,10 +55,10 @@ public:
 	}
 };
 
-int main() {
-	Solution sln;
-	vector<int> nums1 = { 1,2,3,0,0,0 }, nums2 = { 2,5,6 };
-	sln.merge(nums1, 3, nums2, 3);
-	for (int i = 0; i < nums1.size(); i++) cout << nums1[i] << " ";
-	return 0;
-}
+// int main() {
+// 	Solution sln;
+// 	vector<int> nums1 = { 1,2,3,0,0,0 }, nums2 = { 2,5,6 };
+// 	sln.merge(nums1, 3, nums2, 3);
+// 	for (int i = 0; i < nums1.size(); i++) cout << nums1[i] << " ";
+// 	return 0;
+// }

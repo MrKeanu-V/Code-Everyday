@@ -2,7 +2,7 @@
 2305. Fair Distribution of Cookies [Medium - 5]
 */
 #include "fnt_solution.h"
-#include "fnt_template.h"
+#include "fnt_utils.h"
 
 class Solution2305 {
 public:

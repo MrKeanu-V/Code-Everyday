@@ -2,7 +2,7 @@
 455. Assign Cookies [Easy - 3]
 */
 #include "fnt_solution.h"
-#include "fnt_template.h"
+#include "fnt_utils.h"
 
 class Solution455 {
 public:

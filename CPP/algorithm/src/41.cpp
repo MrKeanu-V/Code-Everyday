@@ -1,7 +1,7 @@
 /*
 41. First Missing Positive [Hard - 7]
 */
-#include "fnt_template.h"
+#include "fnt_utils.h"
 #include "fnt_solution.h"
 using namespace fnt;
 
