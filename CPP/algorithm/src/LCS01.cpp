@@ -15,14 +15,14 @@ using namespace std;
 
 class Solution {
 public:
-	// �ⷨһ ģ��
+	// 解法一 模拟
 	int leastMinutes1(int n) {
 		return ceil(log(n)/log(2)) + 1;
 	}
 	int leastMinutes2(int n) {
 		return n <= 1 ? 1 : log(n - 1) / log(2) + 2;
 	}
-	// �ⷨ�� DP
+	// 解法二 DP
 	int leastMinutes(int n) {
 		vector<int> dp(n + 1, 0);
 		dp[1] = 1;
@@ -33,9 +33,9 @@ public:
 	}
 };
 
-int main() {
-	Solution sln;
-	int n = 69;
-	cout << sln.leastMinutes(n) << endl;
-	return 0;
-}
+// int main() {
+// 	Solution sln;
+// 	int n = 69;
+// 	cout << sln.leastMinutes(n) << endl;
+// 	return 0;
+// }

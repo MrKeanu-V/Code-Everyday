@@ -1,6 +1,11 @@
-/*
-5. Longest Palindromic Substring [Medium - 5]
+/**
+@Author: MrKeanu
+@Date: 2026-07-12
+@Description: Leetcode 5. Longest Palindromic Substring [Medium]
+@History: Original creation — brute force + Manacher algorithm solutions.
 */
+#include "fnt_utils.h"
+#include "fnt_solution.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -8,14 +13,13 @@
 #include <algorithm>
 #include <functional>
 #include <numeric>
-#include <ranges>
-#include <queue>
-#include <unordered_map>
-#include <unordered_set>
 using namespace std;
+using namespace fnt;
 
-class Solution {
+class Solution5 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("5")
+
 	// 解法一 暴力法
 	string longestPalindrome1(string s) {
 		int n = s.size(), l = 0, r = 0;
@@ -38,6 +42,7 @@ public:
 		}
 		return s.substr(l, r - l + 1);
 	}
+
 	// 解法二 Manacher算法
 	string longestPalindrome(string s) {
 		if (s.size() < 2) return s;
@@ -77,13 +82,13 @@ public:
 		}
 		return s.substr(start, maxLen);
 	}
+
+    void test() override {
+        string s = "babad";
+        cout << longestPalindrome(s) << endl;    // "bab" or "aba"
+        s = "cbbd";
+        cout << longestPalindrome(s) << endl;    // "bb"
+    }
 };
 
-int main() {
-	Solution sln;
-	string s = "babad";
-	cout << sln.longestPalindrome(s) << endl;
-	s = "cbbd";
-	cout << sln.longestPalindrome(s) << endl;
-	return 0;
-}
+FNT_REGISTER(Solution5);

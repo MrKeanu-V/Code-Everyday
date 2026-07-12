@@ -1,22 +1,22 @@
-/*
-Leetcode 3. Longest Substring Without Repeating Characters medium 无重复字符的最长子串 中等
+/**
+@Author: MrKeanu
+@Date: 2026-07-12
+@Description: Leetcode 3. Longest Substring Without Repeating Characters [Medium]
+@History: Original creation — brute force + sliding window solutions.
 */
-#include <iostream>
+#include "fnt_utils.h"
+#include "fnt_solution.h"
+#include <string>
 #include <vector>
 #include <unordered_set>
 #include <algorithm>
-#include <string>
-#include <unordered_map>
-#include <queue>
-#include <stack>
-#include <set>
-#include <map>
-#include <list>
-#include <functional>
 using namespace std;
+using namespace fnt;
 
-class Solution {
+class Solution3 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("3")
+
 	// 解法一：滑动窗口
 	int lengthOfLongestSubstring(string s) {
 		int maxLen = 0;
@@ -34,6 +34,7 @@ public:
 		}
 		return max(maxLen, int(v.size()));	// 边界条件
 	}
+
 	// 解法二 哈希+滑动窗口
 	int lengthOfLongestSubstring_2(string s) {
 		int maxLen = 0, l = 0, r = 0;
@@ -45,11 +46,15 @@ public:
 		}
 		return maxLen;
 	}
+
+    void test() override {
+        string str = "aab";
+        cout << lengthOfLongestSubstring(str) << endl;       // 2
+        str = "abcabcbb";
+        cout << lengthOfLongestSubstring(str) << endl;       // 3
+        str = "pwwkew";
+        cout << lengthOfLongestSubstring_2(str) << endl;     // 3
+    }
 };
 
-//int main() {
-//	Solution s;
-//	string str = "aab";
-//	cout << s.lengthOfLongestSubstring(str) << endl;
-//	return 0;
-//}
+FNT_REGISTER(Solution3);

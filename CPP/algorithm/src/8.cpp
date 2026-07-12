@@ -1,11 +1,21 @@
-/*
-8. String To Integer (atoi) [Medium - 6]
+/**
+@Author: MrKeanu
+@Date: 2026-07-12
+@Description: Leetcode 8. String To Integer (atoi) [Medium]
+@History: Original creation — DFA state machine + simulation solutions.
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt_utils.h"
+#include "fnt_solution.h"
+#include <iostream>
+#include <string>
+#include <unordered_map>
+#include <vector>
+#include <climits>
+using namespace std;
+using namespace fnt;
 
-// 解法一：有限状态机(Deterministic Finite Automaton,DFA)一般简称为自动机
-// 此类型题目统称为有限状态机，其难点在于边界条件的处理，需要考虑很多种情况，因此需要使用有限状态机来处理。
+// 解法一：有限状态机(Deterministic Finite Automaton, DFA)
+// 此类型题目难点在于边界条件的处理，需要使用有限状态机来处理。
 class Automaton {
 private:
     string state = "start";
@@ -36,17 +46,17 @@ public:
     }
 };
 
-class Solution {
-private:
-    
+class Solution8 : public BaseSolution {
 public:
-    // 解法一 有限状态机Time:O(n) Space:O(1)
+    FNT_SOLUTION_KEY("8")
+
+    // 解法一 有限状态机 Time:O(n) Space:O(1)
     int myAtoi_1(string s) {
         Automaton automaton;
         for(char c:s) automaton.get(c);
         return automaton.sign * automaton.ans;
     }
-    // 解法二 模拟Time:O(n) Space:O(1)
+    // 解法二 模拟 Time:O(n) Space:O(1)
     int myAtoi(string s) {
         int i = 0, sign = 1;
         long long res = 0;
@@ -64,23 +74,21 @@ public:
 
         return res * sign;
     }
-    void test() {
+
+    void test() override {
         string str = "42";
-        cout << myAtoi(str) << endl;
+        cout << myAtoi(str) << endl;          // 42
         str = "-042";
-        cout << myAtoi(str) << endl;
+        cout << myAtoi(str) << endl;          // -42
         str = "words and 987";
-        cout << myAtoi(str) << endl;
+        cout << myAtoi(str) << endl;          // 0
         str = "0 - 1";
-        cout << myAtoi(str) << endl;
+        cout << myAtoi(str) << endl;          // 0
         str = "1337c0d3";
-        cout << myAtoi(str) << endl;
+        cout << myAtoi(str) << endl;          // 1337
         str = "-91283472332";
-        cout << myAtoi(str) << endl;
+        cout << myAtoi(str) << endl;          // -2147483648 (INT_MIN)
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution8);
