@@ -6,6 +6,6 @@
 using namespace fnt;
 
 int main() {
-    fnt::Run();
+    FntApp::Instance().Run();
     return 0;
 }

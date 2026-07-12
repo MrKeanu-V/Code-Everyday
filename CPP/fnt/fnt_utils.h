@@ -1,8 +1,9 @@
-/*
+/**
 @Author: MrKeanu
-@Date: 2022-05-17 15:16:22
-@Description: This file is a template file, used to store some commonly used template functions and template classes. 
-
+@Date: 2026-07-12
+@Description: Utility data structures and helper functions for algorithm problem solving.
+             Provides ListNode / TreeNode definitions, print utilities, and common tools.
+@History: 2022-05-17 - Initial creation as fnt_template.h (template functions and classes).
 */
 #pragma once
 
@@ -25,7 +26,6 @@
 #include <intrin.h> // _BitScanForward
 using namespace std;
 
-// Foundation
 namespace fnt {
     // Singly linked list
     struct ListNode {
@@ -103,4 +103,3 @@ namespace fnt {
         bool operator()(const pair<int,int>& a, const pair<int,int>& b) { return a.first > b.first; }
     };
 }
-

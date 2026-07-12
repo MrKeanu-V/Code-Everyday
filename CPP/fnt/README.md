@@ -8,30 +8,55 @@
 
 | 文件 | 说明 |
 |------|------|
-| `fnt_solution.h` / `fnt_solution.cpp` | 题解注册与交互式执行框架。提供 `FNT_REGISTER` / `FNT_REGISTER_SOLUTION` 宏用于自动注册题解，`Run()` 进入命令行交互环境。 |
-| `fnt_template.h` / `fnt_template.cpp` | 常用数据结构与工具函数模板，包括：<br>• `ListNode` — 单向链表节点及其创建(`createList`)、打印(`printList`)、释放(`freeList`)<br>• `TreeNode` — 二叉树节点及其层序构建(`createTree`)、打印(`printTree`)、前中后序遍历<br>• `printVector1D / printVector2D` — 一维/二维数组打印<br>• `GreaterCmp` — 自定义比较器（大顶堆用）<br>• `Bool2Str`、`count_one`、`longestCommonPrefix` 等辅助函数 |
+| `fnt_solution.h` / `fnt_solution.cpp` | 题解注册与交互式执行框架。核心类：<br>• `BaseSolution` — 抽象基类，提供 `virtual void test() = 0`<br>• `FntApp` — 单例管理器，维护工厂注册表，按需懒加载创建题解实例<br>• `FNT_REGISTER(cls_name)` — 工厂注册宏，在 `main()` 前自动完成 |
+| `fnt_utils.h` / `fnt_utils.cpp` | 常用数据结构和工具函数：<br>• `ListNode` — 单向链表节点及其创建(`createList`)、打印(`printList`)、释放(`freeList`)<br>• `TreeNode` — 二叉树节点及其层序构建(`createTree`)、打印(`printTree`)、前中后序遍历<br>• `printVector1D / printVector2D` — 一维/二维数组打印<br>• `GreaterCmp` — 自定义比较器（大顶堆用）<br>• `Bool2Str`、`count_one`、`longestCommonPrefix` 等辅助函数 |
+
+---
+
+## 架构设计
+
+```
+FNT_REGISTER(Solution19)
+    │
+    ▼  静态全局对象构造 → FntApp::Instance().Register("19", factory)
+    │                     registry_["19"] = []{ return new Solution19(); }
+    │
+main() → FntApp::Instance().Run()
+    │
+    ├── print  → 遍历 registry_，打印所有 key
+    ├── run    → 输入 "19" → factory() → new Solution19 → test() → delete
+    ├── runall → 遍历全部，逐个 factory() → test() → delete
+    └── exit
+```
+
+**懒加载优势：** 注册表仅存储工厂函数（轻量 lambda），实际 `Solution` 实例在运行时按需创建、用完立即销毁，无静态全局实例，避免静态初始化顺序问题，内存占用极小。
 
 ---
 
 ## 使用方式
 
-### 1. 注册题解
+### 1. 编写题解
 
-在 `algorithm/src/` 下编写题解 `.cpp` 文件，使用 `FNT_REGISTER` 宏注册：
+在 `algorithm/src/` 下编写题解 `.cpp` 文件，继承 `BaseSolution` 并使用 `FNT_SOLUTION_KEY` / `FNT_REGISTER` 宏：
 
 ```cpp
 // algorithm/src/1.cpp — Two Sum
+#include "fnt_utils.h"
 #include "fnt_solution.h"
 #include <vector>
 using namespace std;
+using namespace fnt;
 
-class Solution1 {
+class Solution1 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("1")  // 声明 key = "1"，用于注册和命令行查找
+
     vector<int> twoSum(vector<int>& nums, int target) {
         // ... 题解实现
+        return {};
     }
 
-    void test() {
+    void test() override {
         vector<int> nums = {2, 7, 11, 15};
         auto res = twoSum(nums, 9);
         for (int x : res) cout << x << " ";
@@ -39,28 +64,22 @@ public:
     }
 };
 
-FNT_REGISTER(1);  // 注册题号 1，宏自动生成 Solution1 实例并调用 test()
+FNT_REGISTER(Solution1);
 ```
 
-**宏说明：**
-
-| 宏 | 用法 | 适用场景 |
-|----|------|----------|
-| `FNT_REGISTER(n)` | 类名必须为 `Solution{n}`，如 `Solution25` | 标准命名，推荐使用 |
-| `FNT_REGISTER_SOLUTION(ClassName, n)` | 可自定义类名，如 `FNT_REGISTER_SOLUTION(MyBFS, 200)` | 类名不等于 `Solution{n}` 时使用 |
-
-> 宏利用静态全局对象的构造函数在 `main()` 执行前自动完成注册，无需手动调用任何初始化函数。
+**关键步骤：**
+1. 类名为 `Solution` + 题号（如 `Solution1`、`Solution25`）
+2. 必须 `public` 继承 `BaseSolution`
+3. 在 `public` 区域使用 `FNT_SOLUTION_KEY("题号")` 声明 key
+4. 实现 `void test() override`
+5. 文件末尾调用 `FNT_REGISTER(Solution1)`（传入类名）
 
 ### 2. 编译
-
-将所有源文件一起编译：
 
 ```bash
 cd CPP
 g++ -std=c++20 -I. main.cpp fnt/*.cpp algorithm/src/*.cpp -o main
 ```
-
-或使用 CMake 等构建系统，确保 include path 包含 `CPP/` 根目录。
 
 ### 3. 运行
 
@@ -68,67 +87,30 @@ g++ -std=c++20 -I. main.cpp fnt/*.cpp algorithm/src/*.cpp -o main
 ./main
 ```
 
-启动后将看到欢迎界面，随后进入交互式命令行：
+---
 
-```
- ________________________________________________________
-|                                                        |
-|    _   _      _ _         _    _            _     _    |
-|   | | | |    | | |       | |  | |          | |   | |   |
-|   | |_| | ___| | | ___   | |  | | ___  _ __| | __| |   |
-|   |  _  |/ _ \ | |/ _ \  | |/\| |/ _ \| '__| |/ _` |   |
-|   | | | |  __/ | | (_) | \  /\  / (_) | |  | | (_| |   |
-|   \_| |_/\___|_|_|\___/   \/  \/ \___/|_|  |_|\__,_|   |
-|________________________________________________________|
-
-------------- Welcome, adventurer!-------------
-Enter a command (run, runall, print, erase, clear, exit):
-```
-
-### 4. 交互命令
+## 交互命令
 
 | 命令 | 功能 |
 |------|------|
-| `run` | 进入子模式，输入题号（如 `25`）即可执行对应题解的 `test()` 方法；输入 `exit` 返回主菜单 |
-| `runall` | 依次执行所有已注册题解 |
-| `print` | 列出所有已注册的题解名称（格式为 `题号.cpp`） |
-| `erase` | 进入子模式，输入题号从注册表中移除对应题解；输入 `exit` 返回 |
+| `run` | 进入子模式，输入题号（如 `1`）→ 工厂创建实例 → `test()` → 销毁 |
+| `runall` | 依次执行所有已注册题解（每个一次性创建→执行→销毁） |
+| `print` | 列出所有已注册的题号 |
+| `erase` | 进入子模式，输入题号从注册表中移除 |
 | `clear` | 清空所有已注册题解 |
 | `exit` | 退出程序 |
-
-**示例交互：**
-
-```
-Enter a command (run, runall, print, erase, clear, exit): print
-------------- Info: Available Solutions: -------------
-1.cpp
-25.cpp
-200.cpp
-...
-
-Enter a command (run, runall, print, erase, clear, exit): run
-please enter the name of the solution to run (or enter 'exit' to exit): 25
-------------- Info: Running solution: 25.cpp -------------
-1 2 3 4 5
-------------- Info: Solution 25.cpp finished! -------------
-please enter the name of the solution to run (or enter 'exit' to exit): exit
-
-Enter a command (run, runall, print, erase, clear, exit): exit
-------------- Farewell, adventurer!-------------
-```
 
 ---
 
 ## 项目入口
 
-`main.cpp` 位于 `CPP/` 根目录（不在 `fnt/` 内）：
+`main.cpp` 位于 `CPP/` 根目录：
 
-```
-CPP/
-├── main.cpp              # 项目入口，调用 fnt::Run()
-├── fnt/
-│   ├── fnt_solution.h / .cpp
-│   └── fnt_template.h / .cpp
-└── algorithm/
-    ├── inc/   # 算法模板 .hpp
-    └── src/   # 题解 .cpp
+```cpp
+#include "fnt/fnt_solution.h"
+using namespace fnt;
+
+int main() {
+    FntApp::Instance().Run();
+    return 0;
+}

@@ -1,13 +1,12 @@
 /**
- * @file pub_template.cpp
- * @brief framework for my algorithms problem solving
- * 
- * @GitMsg Template: use file desc, and algorithm category organized by |.
-*  eg: git commit -m "739. Daily Temperatures [Medium - 6 - Brute|MonoStack]"
+@Author: MrKeanu
+@Date: 2026-07-12
+@Description: Implementation of fnt utility functions: ListNode / TreeNode operations,
+             print helpers, bit operations, and common algorithm tools.
+@History: 2022-05-17 - Initial creation as fnt_template.cpp.
 */
-#include "fnt_template.h"
+#include "fnt_utils.h"
 
-// Foundation
 namespace fnt {
     // 构造链表
     ListNode* createList(vector<int>& nums) {
@@ -33,10 +32,10 @@ namespace fnt {
         pre->next = cur->next;
         return head;
     }
-	// 释放链表
-	void freeList(ListNode* head){
-		while (head) {
-			ListNode* tmp = head;
+    // 释放链表
+    void freeList(ListNode* head){
+        while (head) {
+            ListNode* tmp = head;
             // 避免重复释放
             try {
                 head = head->next;
@@ -45,8 +44,8 @@ namespace fnt {
             catch (const std::exception& e) {
                 //cout << e.what() << endl;
             }
-		}
-	}
+        }
+    }
 
     void printList(ListNode* head) {
         while (head) {
@@ -161,7 +160,7 @@ namespace fnt {
         while (i < len && s1[i] == s2[i]) i++;
         return s1.substr(0, i);
     }
-    // 
+    //
     unsigned int __builtin_ctz(unsigned int val) {
         unsigned long index; // 用于存储位的位置
         if (_BitScanForward(&index, val)) {
