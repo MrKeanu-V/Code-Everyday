@@ -122,9 +122,4 @@ private:
     static const string& Key() { static string k = sln; return k; }
 
 #define FNT_REGISTER(cls_name) \
-struct FNT_CONCAT(cls_name, _Reg) { \
-    FNT_CONCAT(cls_name, _Reg)() { \
-        fnt::FntApp::Instance().Register(cls_name::Key(), []() -> fnt::BaseSolution* { return new cls_name(); }); \
-    } \
-}; \
-static FNT_CONCAT(cls_name, _Reg) FNT_CONCAT(_reg_, cls_name);
+fnt::FntApp::Instance().Register(cls_name::Key(), []() -> fnt::BaseSolution* { return new cls_name(); });
