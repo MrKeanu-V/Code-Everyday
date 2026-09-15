@@ -1,12 +1,14 @@
 /*
 41. First Missing Positive [Hard - 7]
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 using namespace fnt;
 
-class Solution41 {
+class Solution41 : public BaseSolution {
 public:
+	FNT_SOLUTION_KEY("41")
+
 	// Solution 1: Hash Table, O(n) time, O(1) space
 	int firstMissingPositive(vector<int>& nums) {
 		int len = nums.size();
@@ -18,7 +20,7 @@ public:
 		return len + 1;
 	}
 
-	void test() {
+	void test() override {
 		vector<int> nums = { 1, 2, 0 };
 		cout << firstMissingPositive(nums) << endl;
 		nums = { 3, 4, -1, 1 };
@@ -28,12 +30,4 @@ public:
 	}
 };
 
-// RAII Register template
-struct Solution41Register {
-	Solution41Register() {
-		Solution41 s;
-		RegisterSolution("41", [&s]() { s.test(); });
-	}
-};
-
-static Solution41Register __reg41;
+FNT_REGISTER(Solution41);

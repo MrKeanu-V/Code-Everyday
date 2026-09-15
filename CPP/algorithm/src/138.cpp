@@ -1,8 +1,9 @@
 /*
 138. Copy List with Random Pointer [Medium - 6]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
 class Node {
 public:
@@ -21,8 +22,10 @@ public:
 	}
 };
 
-class Solution {
+class Solution138 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("138")
+
 	// 解法一 哈希+遍历 Time:O(n) Space:O(n)
 	Node* copyRandomList_1(Node* head) {
 		if (!head) return nullptr;
@@ -89,4 +92,24 @@ public:
 		}
 		return cachedNode[head];
 	}
+
+	void test() override {
+		Node* head = new Node(7);
+		head->next = new Node(13);
+		head->next->next = new Node(11);
+		head->next->next->next = new Node(10);
+		head->next->next->next->next = new Node(1);
+		head->random = nullptr;
+		head->next->random = head;
+		head->next->next->random = head->next->next->next->next;
+		head->next->next->next->random = head->next;
+		head->next->next->next->next->random = head;
+		Node* res = copyRandomList(head);
+		while (res) {
+			cout << res << " : " << res->val << " : " << res->random << endl;
+			res = res->next;
+		}
+	}
 };
+
+FNT_REGISTER(Solution138);

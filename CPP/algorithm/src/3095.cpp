@@ -1,7 +1,7 @@
 /*
 3095. Shortest Subarray With Or At Least K	[Easy - 2]
 */
-#include "fnt_solution.h"
+#include "fnt/fnt_solution.h"
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -20,8 +20,10 @@
 #include <cmath>
 using namespace std;
 
-class Solution3095 {
+class Solution3095 : public fnt::BaseSolution {
 public:
+    FNT_SOLUTION_KEY("3095")
+
     int minimumSubarrayLength(vector<int>& nums, int k) {
         int n = nums.size(), res = INT_MAX;
         for (int i = 0; i < n; i++) {
@@ -33,7 +35,7 @@ public:
         }
         return res == INT_MAX ? -1 : res;
     }
-    void test() {
+    void test() override {
         vector<int> nums = { 1,2,3 };
         cout << minimumSubarrayLength(nums, 2) << endl;
         nums = { 2,1,8 };
@@ -43,4 +45,4 @@ public:
     }
 };
 
-FNT_REGISTER(3095);
+FNT_REGISTER(Solution3095);

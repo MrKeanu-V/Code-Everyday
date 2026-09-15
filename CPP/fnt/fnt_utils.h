@@ -23,7 +23,10 @@
 #include <functional>
 #include <climits>
 #include <cmath>
-#include <intrin.h> // _BitScanForward
+#ifdef _MSC_VER
+#include <intrin.h> // _BitScanForward —— MSVC 专有头文件，GCC/Clang 下不存在
+#endif
+#include <cstring> // for memset on gcc
 using namespace std;
 
 namespace fnt {
@@ -94,7 +97,11 @@ namespace fnt {
     string longestCommonPrefix(const string& s1, const string& s2);
 
     // Related to bit operations
+#ifdef _MSC_VER
+    // MSVC 没有 __builtin_ctz 内建函数，下面以 _BitScanForward 自行实现，故仅 MSVC 下声明；
+    // GCC/Clang 直接使用编译器内建的 __builtin_ctz，无需也无法重复定义。
     unsigned int __builtin_ctz(unsigned int val); // 返回n中最低位的1的位置
+#endif
     
     // Comparative type
     class GreaterCmp {

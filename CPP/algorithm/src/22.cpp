@@ -1,11 +1,14 @@
 /*
 22. Generate Parentheses [Medium - 5]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution22 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("22")
+
     // 解法一 回溯 Time:O(4^n / sqrt(n)) Space:O(n)
     vector<string> generateParenthesis(int n) {
         vector<string> res;
@@ -26,4 +29,12 @@ public:
         dfs(n, n);
         return res;
     }
+
+    void test() override {
+        int n = 3;
+        vector<string> res = generateParenthesis(n);
+        printVector1D(res);    // ["((()))","(()())","(())()","()(())","()()()"]
+    }
 };
+
+FNT_REGISTER(Solution22);

@@ -1,11 +1,13 @@
 /*
 239. Sliding Window Maximum [Hard - 6]
 */
-#include"pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution239 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("239")
     // 解法一 容器+暴力 Time:O(n*k) Space:O(k)
     vector<int> maxSlidingWindow_1(vector<int>& nums, int k) {
         int n = nums.size(), i = 0;
@@ -50,4 +52,18 @@ public:
         }
         return res;
     }
+
+    void test() override {
+        // 注意：三种解法都会修改入参，每个用例使用独立副本
+        vector<int> nums1 = { 1, 3, -1, -3, 5, 3, 6, 7 };
+        printVector1D(maxSlidingWindow(nums1, 3));    // [3, 3, 5, 5, 6, 7]
+
+        vector<int> nums2 = { 1 };
+        printVector1D(maxSlidingWindow(nums2, 1));    // [1]
+
+        vector<int> nums3 = { 1, 3, -1, -3, 5, 3, 6, 7 };
+        printVector1D(maxSlidingWindow_1(nums3, 3));  // 解法一 对照
+    }
 };
+
+FNT_REGISTER(Solution239);

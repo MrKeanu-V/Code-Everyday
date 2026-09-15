@@ -1,11 +1,14 @@
 /*
 102. Binary Tree Level Order Traversal [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution102 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("102")
+
     // 解法一 BFS Time: O(n) Space: O(n)
     vector<vector<int>> levelOrder_1(TreeNode* root) {
         vector<vector<int>> res;
@@ -69,7 +72,7 @@ public:
         return res;
     }
 
-    void test() {
+    void test() override {
         vector<int> nums = { 3,9,20,NULL, NULL, 15,7 };
         TreeNode* root = createTree(nums);
         printTree(root);
@@ -78,6 +81,7 @@ public:
     }
 };
 
+FNT_REGISTER(Solution102);
 //int main() {
 //    Solution().test();
 //    return 0;

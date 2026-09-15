@@ -1,11 +1,14 @@
 /*
 88. Merge Sorted Array [Easy - 2]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution88 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("88")
+
 	// 解法一 暴力 Time:O(m+n) Space:O(m+n)
 	void merge_01(vector<int>& nums1, int m, vector<int>& nums2, int n) {
 		vector<int> tmp = nums1;
@@ -38,7 +41,7 @@ public:
 				nums1[i] = nums2[k--];
 		}
 	}
-	void test() {
+	void test() override {
 		vector<int> nums1 = { 1,3,5,0,0,0 };
 		vector<int> nums2 = {2,3,7};
 		merge(nums1, 3, nums2, 3);
@@ -46,6 +49,7 @@ public:
 	}
 };
 
+FNT_REGISTER(Solution88);
 //int main() {
 //	Solution().test();
 //	return 0;

@@ -1,13 +1,16 @@
 /*
 98. Validate Binary Search Tree [Medium - 3]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution98 : public BaseSolution {
 private:
     long long pre = LLONG_MIN;
 public:
+    FNT_SOLUTION_KEY("98")
+
     // 解法一 前序 递归 Time:O(n) Space:O(1)
     bool isValidBST_1(TreeNode* root, long long min = LLONG_MIN, long long max = LLONG_MAX) {
         if (!root) return true;
@@ -22,7 +25,7 @@ public:
         return isValidBST(root->right);
     }
 
-    void test() {
+    void test() override {
         vector<int> nums = { 2, 1, 3 };
         TreeNode* root = createTree(nums);
         printTree(root);
@@ -48,3 +51,4 @@ public:
 //    vector<int> nums;
 //    return 0;
 //}
+FNT_REGISTER(Solution98);

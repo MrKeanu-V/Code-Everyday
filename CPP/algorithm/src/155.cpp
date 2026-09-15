@@ -1,8 +1,11 @@
 /*
 155. Min Stack [Medium - 4]
 */
-#include "pub_template.h"
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
 #include <forward_list>	// C++ 11引入
+
+using namespace fnt;
 
 // 解法一：使用前向链表实现
 class MinStack_ForwardList {
@@ -46,12 +49,14 @@ public:
 };
 
 // 解法二：使用两个栈实现
-class MinStack {
+class Solution155 : public BaseSolution {
 private:
 	stack<int> stk;
 	stack<int> min_stk;
 public:
-	MinStack() {
+	FNT_SOLUTION_KEY("155")
+
+	Solution155() {
 		min_stk.push(INT_MAX);
 	}
 
@@ -73,10 +78,8 @@ public:
 		return min_stk.top();
 	}
 
-};
-
-void test() {
-	MinStack* obj = new MinStack();
+	void test() override {
+		Solution155* obj = new Solution155();
 
 	vector<string> ops = { "MinStack","push","push","push","getMin","pop","top","getMin" };
 	vector<int> vals = { INT_MAX,-2,0,-3,INT_MAX,INT_MAX,INT_MAX,INT_MAX };
@@ -88,9 +91,7 @@ void test() {
 	}
 
 	delete obj;
-}
+	}
+};
 
-//int main() {
-//	test();
-//	return 0;
-//}
+FNT_REGISTER(Solution155);

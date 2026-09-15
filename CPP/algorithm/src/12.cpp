@@ -1,8 +1,9 @@
 /*
 12. Integer to Roman [Medium - 3]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
 struct Descending {
     bool operator()(const int& lhs, const int& rhs) const {
@@ -10,7 +11,9 @@ struct Descending {
     }
 };
 
-class Solution {
+class Solution12 : public BaseSolution {
+public:
+    FNT_SOLUTION_KEY("12")
 private:
     map<int, string, Descending> _mp = {
         {1000, "M"},
@@ -40,4 +43,19 @@ public:
 
         return ans;
     }
+
+    void test() override {
+        int num = 3;
+        cout << intToRoman(num) << endl;   // "III"
+        num = 4;
+        cout << intToRoman(num) << endl;   // "IV"
+        num = 9;
+        cout << intToRoman(num) << endl;   // "IX"
+        num = 58;
+        cout << intToRoman(num) << endl;   // "LVIII"
+        num = 1994;
+        cout << intToRoman(num) << endl;   // "MCMXCIV"
+    }
 };
+
+FNT_REGISTER(Solution12);

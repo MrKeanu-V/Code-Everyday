@@ -1,11 +1,13 @@
 /*
 89. Gray Code [Medium - 5 - Backtrack]
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 
-class Solution89 {
+class Solution89 : public fnt::BaseSolution {
 public:
+    FNT_SOLUTION_KEY("89")
+
     // Solution 1: Backtrack + SubTree Time: O(2^n) Space: O(2^n)
     // Find the number patterns, then use backtrack to find all the patterns
     vector<int> grayCode(int n) {
@@ -25,7 +27,7 @@ public:
         return res;
     }
 
-    void test() {
+    void test() override {
         vector<int> res = grayCode(2);
         fnt::printVector1D(res);    // [0,1,3,2]
         res = grayCode(3);
@@ -35,4 +37,4 @@ public:
     }
 };
 
-FNT_REGISTER_SOLUTION(Solution89, 89)
+FNT_REGISTER(Solution89);

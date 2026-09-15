@@ -1,11 +1,14 @@
 /*
 461. Hamming Distance [Easy - 2]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution461 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("461")
+
     // 解法一 逐位运算 Time: O(1) Space: O(1)
     int hammingDistance_1(int x, int y) {
         int res = 0, i = 32;
@@ -39,4 +42,13 @@ public:
         // vc++编译器中需要自己实现
         return -1;
     }
+
+    void test() override {
+        int x = 1, y = 4;
+        cout << hammingDistance_1(x, y) << endl;    // 2
+        cout << hammingDistance_2(x, y) << endl;    // 2
+        cout << hammingDistance_3(x, y) << endl;    // 2
+        cout << hammingDistance_4(x, y) << endl;    // -1
+    }
 };
+FNT_REGISTER(Solution461);

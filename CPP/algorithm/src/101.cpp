@@ -1,11 +1,14 @@
 /*
 101. Symmetric Tree	[Easy - 3]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution101 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("101")
+
 	void inOrder(TreeNode* root, vector<int>& nums) {
 		if (!root) {
 			nums.push_back(INT_MIN);
@@ -36,7 +39,7 @@ public:
 		return !root || isSameTree(root->left, root->right);
 	}
 
-	void test() {
+	void test() override {
 		vector<int> nums = { 1,2,2,3,4,4,3 };
 		TreeNode* root = createTree(nums);
 		inOrderTree(root);
@@ -56,6 +59,8 @@ public:
 		cout << Bool2Str(isSymmetric(root)) << endl;
 	}
 };
+
+FNT_REGISTER(Solution101);
 
 //int main() {
 //	Solution().test();

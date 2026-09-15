@@ -1,8 +1,9 @@
 /*
 204. Count Primes [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
 const long mx = 5000000;
 long pi[mx+1];
@@ -21,8 +22,10 @@ auto init = []() {
     return 0;
 }();
 
-class Solution {
+class Solution204 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("204")
+
     bool isPrime(int n) {
         if (n < 2) return false;
         for (int i = 2; i * i <= n; i++) {
@@ -31,7 +34,7 @@ public:
         return true;
     }
 
-    // ½â·¨Ò» Brute Time: O(n^2) Space: O(1)
+    // è§£æ³•ä¸€ Brute Time: O(n^2) Space: O(1)
     int countPrimes_1(int n) {
         int res = 0;
         for (int i = 2; i < n; i++) {
@@ -39,7 +42,7 @@ public:
         }
         return res;
     }
-    // ½â·¨¶þ °£À­ÍÐË¹ÌØÄáÉ¸·¨ Time: O(nloglogn) Space: O(n)
+    // è§£æ³•äºŒ åŸƒæ‹‰æ‰˜æ–¯ç‰¹å°¼ç­›æ³• Time: O(nloglogn) Space: O(n)
     int countPrimes_2(int n) {
         int res = 0;
         vector<bool> ppi(n, true);
@@ -59,7 +62,7 @@ public:
         return pi[n - 1];
     }
 
-    void test() {
+    void test() override {
         int n = 10;
         cout << countPrimes(n) << endl;
         cout << countPrimes(0) << endl;
@@ -68,7 +71,4 @@ public:
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution204);

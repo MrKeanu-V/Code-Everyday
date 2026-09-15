@@ -1,11 +1,13 @@
 /*
 2305. Fair Distribution of Cookies [Medium - 5]
 */
-#include "fnt_solution.h"
-#include "fnt_utils.h"
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
 
-class Solution2305 {
+class Solution2305 : public fnt::BaseSolution {
 public:
+    FNT_SOLUTION_KEY("2305")
+
     int distributeCookies(vector<int>& cookies, int k) {
         vector<int> children(k, 0);
         int result = INT_MAX;
@@ -36,20 +38,11 @@ public:
         }
     }
 
-    void test() {
+    void test() override {
         vector<int> cookies = { 8,15,10,20,8 };
         int k = 2;
         cout << "Result: " << distributeCookies(cookies, k) << endl;    // 31
     }
 };
 
-//struct Solution2305Register {
-//    Solution2305Register() {
-//        Solution2305 sln;
-//        fnt::RegisterSolution("2305", [&sln] {sln.test(); });
-//    }
-//};
-//
-//static Solution2305Register __reg2305;
-
-FNT_REGISTER_SOLUTION(Solution2305, 2305)
+FNT_REGISTER(Solution2305);

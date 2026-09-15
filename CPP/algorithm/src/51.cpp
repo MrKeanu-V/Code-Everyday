@@ -1,10 +1,11 @@
 /*
 51. N-Queens [Hard - 6]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution51 : public BaseSolution {
 private:
     bool isValid(vector<string>& board, int row, int col, int n) {
         for (int i = 0; i < n; i++) if (board[row][i] == 'Q' || board[i][col] == 'Q') return false;
@@ -15,6 +16,8 @@ private:
         return true;
     }
 public:
+    FNT_SOLUTION_KEY("51")
+
     // 解法一 回溯+递归
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> res;
@@ -56,13 +59,10 @@ public:
         return res;
     }
 
-    void test() {
+    void test() override {
         vector<vector<string>> res = solveNQueens(4);
         printVector2D(res);
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution51)

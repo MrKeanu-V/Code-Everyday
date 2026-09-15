@@ -1,11 +1,14 @@
 /*
 39. Combination Sum [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution39 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("39")
+
     // 解法一 回溯 枚举选哪个 Time:O(2^n) Space:O(n)
     vector<vector<int>> combinationSum_1(vector<int>& candidates, int target) {
         vector<vector<int>> res;
@@ -58,4 +61,17 @@ public:
         dfs(dfs, 0, target);
         return res;
     }
+
+    void test() override {
+        vector<int> candidates = { 2,3,6,7 };
+        int target = 7;
+        vector<vector<int>> res = combinationSum(candidates, target);
+        printVector2D(res);
+        candidates = { 2,3,5 };
+        target = 8;
+        res = combinationSum(candidates, target);
+        printVector2D(res);
+    }
 };
+
+FNT_REGISTER(Solution39);

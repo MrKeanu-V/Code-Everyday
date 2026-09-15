@@ -1,7 +1,8 @@
 /*
 436. Find Right Interval [Medium - 6]
 */
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -10,9 +11,12 @@
 #include <algorithm>
 #include <functional>
 using namespace std;
+using namespace fnt;
 
-class Solution436 {
+class Solution436 : public BaseSolution {
 public:
+	FNT_SOLUTION_KEY("436")
+
 	// 解法一 排序+二分
 	vector<int> findRightInterval(vector<vector<int>>& intervals) {
 		int n = intervals.size();
@@ -34,7 +38,7 @@ public:
 		for (auto i : list) cout << i << " ";
 		cout << endl;
 	}
-	void test() {
+	void test() override {
 		cout << "436. Find Right Interval [Medium - 6]" << endl;
 
 		vector<vector<int>> intervals = { {1, 2} };
@@ -51,4 +55,4 @@ public:
 	}
 };
 
-FNT_REGISTER(436);
+FNT_REGISTER(Solution436);

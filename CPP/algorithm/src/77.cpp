@@ -1,11 +1,15 @@
 /*
 77. Combinations [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
+using namespace std;
 
-class Solution {
+class Solution77 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("77")
+
     // 解法一 回溯 选或不选
     void backtrack_1(vector<vector<int>>& res, vector<int>& path, int start, int k, int n) {
         if (start > n) return;
@@ -65,4 +69,11 @@ public:
         dfs(dfs, 1);
         return res;
     }
+
+    void test() override {
+        vector<vector<int>> res = combine(4, 2);
+        printVector2D(res);
+    }
 };
+
+FNT_REGISTER(Solution77)

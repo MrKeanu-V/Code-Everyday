@@ -1,11 +1,13 @@
 /*
 395. Longest Substring with At Least K Repeating Characters [Medium - 6]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution395 : public BaseSolution {
 public:
+	FNT_SOLUTION_KEY("395")
 	// 解法一 分治+递归 Time:O(nlogn) Space:O(1)
 	int longestSubstring(string s, int k) {
 		int res = 0, left = 0, n = s.size();
@@ -21,4 +23,15 @@ public:
 		}
 		return res;
 	}
+
+	void test() override {
+		string s = "aaabb";
+		int k = 3;
+		cout << longestSubstring(s, k) << endl;    // 3
+		s = "ababbc";
+		k = 2;
+		cout << longestSubstring(s, k) << endl;    // 5
+	}
 };
+
+FNT_REGISTER(Solution395);

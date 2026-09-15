@@ -1,11 +1,14 @@
 /*
 119. Pascal's Triangle II [Easy - 3]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution119 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("119")
+
     // 解法一 模拟 Time: O(n^2) Space: O(n)
     vector<int> getRow_1(int rowIndex) {
         vector<vector<int>> res(rowIndex + 1);
@@ -33,4 +36,12 @@ public:
         }
         return cur;
     }
+
+    void test() override {
+        int rowIndex = 3;
+        vector<int> res = getRow_3(rowIndex);
+        printVector1D(res);    // [1,3,3,1]
+    }
 };
+
+FNT_REGISTER(Solution119);

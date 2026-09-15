@@ -1,14 +1,16 @@
 /*
 19. Remove Nth Node From End of List [Medium - 3]
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 #include <stack>
 using namespace fnt;
 using namespace std;
 
-class Solution19 {
+class Solution19 : public BaseSolution {
 public:
+	FNT_SOLUTION_KEY("19")
+
 	// 解法一： 暴力法 Time:O(n) Space:O(1)
 	ListNode* removeNthFromEnd_1(ListNode* head, int n) {
 		ListNode* dummy = new ListNode(0, head);
@@ -54,7 +56,7 @@ public:
 		return dummy->next;
 	}
 
-	void test() {
+	void test() override {
 		ListNode* head = new ListNode(1);
 		removeNthFromEnd(head, 1);
 		printList(head);
@@ -65,4 +67,4 @@ public:
 	}
 };
 
-FNT_REGISTER(19);
+FNT_REGISTER(Solution19);

@@ -1,11 +1,14 @@
 /*
 47. Permutations II [Medium - 5]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution47 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("47")
+
     // 解法一 回溯 枚举选什么 Time:O(N!) Space:O(N)
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<vector<int>> res;
@@ -26,4 +29,12 @@ public:
         dfs(0);
         return res;
     }
+
+    void test() override {
+        vector<int> nums = { 1, 1, 2 };
+        vector<vector<int>> res = permuteUnique(nums);
+        printVector2D(res);    // [[1,1,2],[1,2,1],[2,1,1]]
+    }
 };
+
+FNT_REGISTER(Solution47);

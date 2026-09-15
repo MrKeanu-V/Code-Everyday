@@ -1,11 +1,14 @@
 /*
 220. Contains Duplicate III [Hard - 6]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution220 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("220")
+
 	// 解法一 滑动窗口 + 模拟 Time:O(nk) Space:O(k)
 	bool containsNearbyAlmostDuplicate_1(vector<int>& nums, int indexDiff, int valueDiff) {
 		int n = nums.size(), i = 1;
@@ -44,4 +47,17 @@ public:
 		}
 		return false;
 	}
+
+	void test() override {
+		vector<int> nums = { 1,2,3,1 };
+		int indexDiff = 3, valueDiff = 0;
+		cout << containsNearbyAlmostDuplicate_3(nums, indexDiff, valueDiff) << endl;    // true
+		nums = { 1,0,1,1 };
+		indexDiff = 1, valueDiff = 2;
+		cout << containsNearbyAlmostDuplicate_3(nums, indexDiff, valueDiff) << endl;    // true
+		nums = { 1,5,9,1,5,9 };
+		indexDiff = 2, valueDiff = 3;
+		cout << containsNearbyAlmostDuplicate_3(nums, indexDiff, valueDiff) << endl;    // false
+	}
 };
+FNT_REGISTER(Solution220);

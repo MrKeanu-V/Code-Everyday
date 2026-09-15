@@ -5,7 +5,7 @@
              print helpers, bit operations, and common algorithm tools.
 @History: 2022-05-17 - Initial creation as fnt_template.cpp.
 */
-#include "fnt_utils.h"
+#include "fnt/fnt_utils.h"
 
 namespace fnt {
     // 构造链表
@@ -160,7 +160,9 @@ namespace fnt {
         while (i < len && s1[i] == s2[i]) i++;
         return s1.substr(0, i);
     }
-    //
+    // MSVC 无 __builtin_ctz，用 _BitScanForward 自己实现；
+    // GCC/Clang 已有内建的 __builtin_ctz，这里不再定义，避免与内建函数冲突。
+#ifdef _MSC_VER
     unsigned int __builtin_ctz(unsigned int val) {
         unsigned long index; // 用于存储位的位置
         if (_BitScanForward(&index, val)) {
@@ -171,4 +173,5 @@ namespace fnt {
             return 32; // 假设32位无符号整数，返回32表示所有位都是0
         }
     }
+#endif
 }

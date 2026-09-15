@@ -1,11 +1,14 @@
 /*
 40. Combination Sum II [Medium - 5]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution40 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("40")
+
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
         //ranges::sort(candidates);
         sort(candidates.begin(), candidates.end());
@@ -24,4 +27,13 @@ public:
         dfs(dfs, 0, target);
         return res;
     }
+
+    void test() override {
+        vector<int> candidates = { 10,1,2,7,6,1,5 };
+        int target = 8;
+        vector<vector<int>> res = combinationSum2(candidates, target);
+        printVector2D(res);    // [[1,1,6],[1,2,5],[1,7],[2,6]]
+    }
 };
+
+FNT_REGISTER(Solution40)

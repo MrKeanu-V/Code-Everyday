@@ -1,11 +1,14 @@
 /*
 17. Letter Combinations of a Phone Number [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution17 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("17")
+
     unordered_map<char, string> mp = {
         {'2', "abc"}, {'3', "def"}, {'4', "ghi"}, {'5', "jkl"}, {'6', "mno"},{'7', "pqrs"}, {'8', "tuv"}, {'9', "wxyz"}
     };
@@ -27,14 +30,11 @@ public:
         return res;
     }
 
-    void test() {
+    void test() override {
         string digits = "234";
         vector<string> res = letterCombinations(digits);
         printVector1D(res);
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution17);

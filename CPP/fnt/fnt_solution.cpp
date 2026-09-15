@@ -4,17 +4,17 @@
 @Description: FntApp CLI implementation — interactive command loop for running solutions.
 @History: 2025-09-08 - Initial implementation registration framework.
 */
-#include "fnt_solution.h"
+#include "fnt/fnt_solution.h"
 #include <iostream>
 using namespace std;
 
 namespace fnt {
 
-const static string CMD_EXIT   = "exit";
-const static string CMD_RUN    = "run";
-const static string CMD_RUNALL = "runall";
+const static string CMD_EXIT   = "q";
+const static string CMD_RUN    = "r";
+const static string CMD_RUNALL = "ra";
 const static string CMD_ERASE  = "erase";
-const static string CMD_PRINT  = "print";
+const static string CMD_PRINT  = "p";
 const static string CMD_CLEAR  = "clear";
 
 void FntApp::Run() {
@@ -42,13 +42,13 @@ void FntApp::Run() {
     goto RUN;
 
     while (true) {
-        cout << "Enter a command (run, runall, print, erase, clear, exit): ";
+        cout << "Enter a command (r, ra, p, erase, clear, q): ";
         cin >> command;
 
         if (command == CMD_RUN) {
         RUN:
             while (true) {
-                cout << "please enter the name of the solution to run (or enter 'exit' to exit): ";
+                cout << "please enter the name of the solution to run (or enter 'q' to exit): ";
                 string solutionName;
                 cin >> solutionName;
                 if (solutionName == CMD_EXIT) break;
@@ -60,7 +60,7 @@ void FntApp::Run() {
         }
         else if (command == CMD_ERASE) {
             while (true) {
-                cout << "please enter the name of the solution to erase (or enter 'exit' to exit): ";
+                cout << "please enter the name of the solution to erase (or enter 'q' to exit): ";
                 string solutionName;
                 cin >> solutionName;
                 if (solutionName == CMD_EXIT) break;

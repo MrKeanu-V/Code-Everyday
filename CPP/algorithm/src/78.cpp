@@ -1,11 +1,14 @@
 /*
 78. Subsets [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution78 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("78")
+
     vector<vector<int>> subsets(vector<int>& nums) {
         if (nums.empty()) return {};
         int n = nums.size();
@@ -21,4 +24,12 @@ public:
         dfs(dfs, 0);
         return res;
     }
+
+    void test() override {
+        vector<int> nums = { 1, 2, 3 };
+        vector<vector<int>> res = subsets(nums);
+        printVector2D(res);    // [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+    }
 };
+
+FNT_REGISTER(Solution78);

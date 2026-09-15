@@ -4,8 +4,8 @@
 @Description: Leetcode 8. String To Integer (atoi) [Medium]
 @History: Original creation — DFA state machine + simulation solutions.
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 #include <iostream>
 #include <string>
 #include <unordered_map>

@@ -4,8 +4,8 @@
 @Description: Leetcode 10.01. Sorted Merge LCCI [Easy]
 @History: Original creation — brute force + two-pointer solutions.
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>

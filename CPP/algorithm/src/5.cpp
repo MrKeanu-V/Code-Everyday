@@ -4,8 +4,8 @@
 @Description: Leetcode 5. Longest Palindromic Substring [Medium]
 @History: Original creation — brute force + Manacher algorithm solutions.
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 #include <iostream>
 #include <vector>
 #include <string>

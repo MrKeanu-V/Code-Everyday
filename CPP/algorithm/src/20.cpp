@@ -1,13 +1,17 @@
 /*
 20. Valid Parentheses [Esay - 3]
 */
-#include "pub_template.h"
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution20 : public BaseSolution {
 private:
     unordered_map<char, char> mp = { {')', '('}, {']', '['}, {'}', '{'} };
 
 public:
+    FNT_SOLUTION_KEY("20")
+
     // 解法一：栈+模拟 Time:O(n) Space:O(n)
     bool isValid_1(string s) {
         stack<char> stk;
@@ -33,7 +37,7 @@ public:
         return stk.empty();
     }
 
-    void test() {
+    void test() override {
         string s = "()[]{}";
         string ans = isValid(s) ? "true" : "false";
         cout << ans << endl;
@@ -48,7 +52,4 @@ public:
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution20);

@@ -2,9 +2,11 @@
 LC Is Palindrome [Esay]
 */
 
-#include "pub_template.h"
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution_LC_String_02 : public BaseSolution {
 private:
 	unordered_map<char, char> map = {
 		{'A','a'},{'B','b'},{'C','c'},{'D','d'},{'E','e'},{'F','f'},{'G','g'},{'H','h'},{'I','i'},{'J','j'}, {'K','k'},
@@ -12,13 +14,15 @@ private:
 				{'X','x'},{'Y','y'},{'Z','z'}
 	};
 public:
+	FNT_SOLUTION_KEY("LC_String_02")
+
 	bool isPalindrome(string s) {
 		int l, r, len = s.length();
 		vector<char> str;
 		if (len == 0) return true;
 		for (int i = 0; i < len; i++) {
 			if (s[i] >= 'A' && s[i] <= 'Z')
-				str.push_back(s[i] + 32); // ²»Í¬±àÒëÆ÷AºÍaµÄASCIIÂë²»Í¬
+				str.push_back(s[i] + 32); // ä¸åŒç¼–è¯‘å™¨Aå’Œaçš„ASCIIç ä¸åŒ
 				//str.push_back(map[s[i]]);
 			else if (s[i] >= 'a' && s[i] <= 'z')
 				str.push_back(s[i]);
@@ -33,7 +37,7 @@ public:
 		return true;
 	}
 
-	void test() {
+	void test() override {
 		string str = "A man, a plan, a canal: Panama";
 		string str2 = "race a car";
 		string str3 = "0P";
@@ -46,7 +50,4 @@ public:
 	}
 };
 
-//int main() {
-//	Solution().test();
-//	return 0;
-//}
+FNT_REGISTER(Solution_LC_String_02);

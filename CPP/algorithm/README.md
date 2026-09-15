@@ -38,9 +38,8 @@ algorithm/
 每个题解文件遵循统一的 `BaseSolution` 派生类格式，示例参见 `3.cpp`：
 
 ```cpp
-#include "fnt_utils.h"
-#include "fnt_solution.h"
-using namespace std;
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 using namespace fnt;
 
 class Solution3 : public BaseSolution {
@@ -57,13 +56,42 @@ FNT_REGISTER(Solution3);
 
 ## 编译与运行
 
-题解源文件依赖 `fnt/` 基础框架，由 `CPP/main.cpp` 统一调度运行。
+整个 `algorithm/src/` 与 `fnt` 框架由 **CMake** 统一管理（顶层项目 = `CPP/CMakeLists.txt`），
+所有题解源文件与 `main.cpp` 一起合入**同一个 target：`solutions`**。
 
+编译/运行薄壳：
 ```bash
 cd CPP
-g++ -std=c++20 -I. main.cpp fnt/*.cpp algorithm/src/*.cpp -o main
-./main
+./run.sh -h
 ```
+CMakeLists核心：
+```cmake
+add_library(fnt STATIC fnt/fnt_utils.cpp fnt/fnt_solution.cpp)
+target_include_directories(fnt PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})   # 即 CPP/
+```
+
+### 迁移清单
+
+`CPP/migrated_solutions.cmake` 维护着「已迁移到 FNT 框架的题解」清单。
+每迁移完一个题解就往里追加一行，然后直接构建即可
+（该文件已登记为 configure 依赖，改完会自动重新 configure）：
+
+```bash
+cmake --preset gcc16            # 输出：迁移进度 66/209（待迁移 143）
+cmake --build --preset gcc16    # 只编译清单内的题解 → build/gcc16/solutions
+```
+
+
+全部迁移完成后，使用或修改这个开关切到全量：
+
+```bash
+cmake --preset gcc16 -DLAB_BUILD_ALL_SOLUTIONS=ON
+```
+
+### 迁移期进度说明
+
+迁移进度：76 / 216
+迁移完成前 `solutions` 目标编译失败属预期现象，期间可用上面的 `SOLUTION_FILTER` 逐个验证。
 
 ## 题目来源
 
@@ -84,3 +112,8 @@ g++ -std=c++20 -I. main.cpp fnt/*.cpp algorithm/src/*.cpp -o main
 - **二分查找**：有序数组二分、答案二分
 - **位运算**：汉明重量、位操作技巧
 - **数据结构设计**：LRU、Trie、栈/队列实现
+
+## 题解数据统计
+
+难度统计：
+类别统计：

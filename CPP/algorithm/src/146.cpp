@@ -1,5 +1,5 @@
 /*
-146. LRU Cache Medium LRU»º´æ ÖĞµÈ
+146. LRU Cache Medium LRUç¼“å­˜ ä¸­ç­‰
 */
 #include <iostream>
 #include <vector>
@@ -10,7 +10,7 @@
 #include <numeric>
 using namespace std;
 
-// ½â·¨Ò»£º±©Á¦ ÏßĞÔ±í
+// è§£æ³•ä¸€ï¼šæš´åŠ› çº¿æ€§è¡¨
 class LRUCache1 {
 public:
     unordered_map<int, int> cache;  // key, value
@@ -45,10 +45,10 @@ public:
     }
 };
 
-// ½â·¨¶ş£ºË«ÏòÁ´±í(»·ĞÎ) + ¹şÏ£±í
+// è§£æ³•äºŒï¼šåŒå‘é“¾è¡¨(ç¯å½¢) + å“ˆå¸Œè¡¨
 class Node {
 public:
-    int key, value; //dummyµÄkeyºÍvalueÊµ¼ÊÉÏ¿ÉÒÔÓÃÓÚ±£´æ½áµã³¤¶ÈºÍ×î´óÈİÁ¿
+    int key, value; //dummyçš„keyå’Œvalueå®é™…ä¸Šå¯ä»¥ç”¨äºä¿å­˜ç»“ç‚¹é•¿åº¦å’Œæœ€å¤§å®¹é‡
     Node* prev, * next;
 
     Node(int k = 0, int v = 0) :key(k), value(v), prev(nullptr), next(nullptr) {}
@@ -56,8 +56,8 @@ public:
 class LRUCache {
 private:
     int _capacity_;
-    Node* dummy;    //dummyÉÚ±ø£¬½ÚÔ¼Ò»¸ötail
-    unordered_map<int, Node*> cache;  // ÔÚkeyºÍNode¼ä½¨Á¢Ó³Éä¹ØÏµ
+    Node* dummy;    //dummyå“¨å…µï¼ŒèŠ‚çº¦ä¸€ä¸ªtail
+    unordered_map<int, Node*> cache;  // åœ¨keyå’ŒNodeé—´å»ºç«‹æ˜ å°„å…³ç³»
 
     void remove(Node* node) {
         node->prev->next = node->next;
@@ -82,7 +82,7 @@ private:
     }
 public:
     LRUCache(int capacity) : _capacity_(capacity), dummy(new Node()) {
-        dummy->prev = dummy->next = dummy;  // »·ĞÎÁ´±í
+        dummy->prev = dummy->next = dummy;  // ç¯å½¢é“¾è¡¨
     }
 
     int get(int key) {
@@ -101,7 +101,7 @@ public:
                 Node* last = dummy->prev;
                 cache.erase(last->key);
                 remove(last);
-                delete(last);//ÊÍ·Ånode C++Ê¹ÓÃdeleteÊÍ·ÅÄÚ´æ CÊ¹ÓÃfreeÊÍ·ÅÄÚ´æ
+                delete(last);//é‡Šæ”¾node C++ä½¿ç”¨deleteé‡Šæ”¾å†…å­˜ Cä½¿ç”¨freeé‡Šæ”¾å†…å­˜
             }
         }
 

@@ -1,12 +1,15 @@
 /*
 46. Permutations [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
 // 所有路径问题：DFS、回溯法 两者区别：DFS是遍历所有路径，回溯法是遍历所有解，但本质相同，先进后出
-class Solution {
+class Solution46 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("46")
+
     // 解法一 回溯法 Time:O(N*N!) Space:O(N)
     void backtrack(vector<vector<int>>& res, vector<int>& output, int first, int len) {
         if (first == len) return res.push_back(output);
@@ -53,13 +56,11 @@ public:
         return res;
     }
 
-    void test() {
+    void test() override {
         vector<int> nums = {1, 2, 3};
         vector<vector<int>> res = permute_2(nums);
+        printVector2D(res);
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution46);

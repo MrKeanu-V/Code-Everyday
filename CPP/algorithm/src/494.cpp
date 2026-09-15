@@ -1,11 +1,13 @@
 /*
 494. Target Sum. [Medium - 5 - DP|Backtrack]
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 
-class Solution494 {
+class Solution494 : public fnt::BaseSolution {
 public:
+    FNT_SOLUTION_KEY("494")
+
     // Method 2: DP Time: O(n) Space: O(n)
     /*
     * In fact, this problem can be transformed to a backpack problem.
@@ -46,7 +48,7 @@ public:
         dfs(nums, target, sum - nums[depth], depth + 1, count);
     }
 
-    void test() {
+    void test() override {
         vector<int> nums = {1, 1, 1, 1, 1};
         int target = 3;
         cout << findTargetSumWays(nums, target) << endl;
@@ -56,4 +58,4 @@ public:
     }
 };
 
-FNT_REGISTER(494)
+FNT_REGISTER(Solution494);

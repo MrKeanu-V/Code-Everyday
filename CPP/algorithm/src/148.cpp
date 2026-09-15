@@ -1,10 +1,14 @@
 /*
 148. Sort List [Medium - 6]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution148 : public BaseSolution {
+public:
+    FNT_SOLUTION_KEY("148")
+
 private:
     ListNode* middle(ListNode* head) {
         ListNode* slow = head, * fast = head;
@@ -25,7 +29,7 @@ private:
         return l2;
     }
 public:
-    // ½â·¨Ò» Êý×é+ÅÅÐò Time: O(nlogn) Space: O(n)
+    // è§£æ³•ä¸€ æ•°ç»„+æŽ’åº Time: O(nlogn) Space: O(n)
     ListNode* sortList_1(ListNode* head) {
         if (!head || !head->next) return head;
         vector<int> values;
@@ -39,7 +43,7 @@ public:
         }
         return head;
     }
-    // ½â·¨¶þ ¹é²¢ÅÅÐò Time: O(nlogn) Space: O(logn)
+    // è§£æ³•äºŒ å½’å¹¶æŽ’åº Time: O(nlogn) Space: O(logn)
     ListNode* sortList_2(ListNode* head) {
         if (!head || !head->next) return head;
         ListNode* mid = middle(head);
@@ -47,4 +51,15 @@ public:
         mid->next = nullptr;
         return mergeTwoLists(sortList_2(l1), sortList_2(l2));
     }
+
+    void test() override {
+        vector<int> nums = { 4,2,1,3 };
+        ListNode* head = createList(nums);
+        printList(head);
+        ListNode* res = sortList_2(head);
+        printList(res);
+        freeList(res);
+    }
 };
+
+FNT_REGISTER(Solution148);

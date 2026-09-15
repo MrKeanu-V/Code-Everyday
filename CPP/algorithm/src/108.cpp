@@ -1,10 +1,14 @@
 /*
 108. Convert Sorted Array to Binary Search Tree [Esay - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution108 : public BaseSolution {
+public:
+    FNT_SOLUTION_KEY("108")
+
 private:
     TreeNode* helper(vector<int>& nums, int left, int right) {
         if (left == right) return nullptr;
@@ -17,4 +21,12 @@ public:
         if (nums.empty()) return nullptr;
         return helper(nums, 0, nums.size());    // [0, nums.size())
     }
+
+    void test() override {
+        vector<int> nums = { -10, -3, 0, 5, 9 };
+        TreeNode* root = sortedArrayToBST(nums);
+        printTree(root);
+    }
 };
+
+FNT_REGISTER(Solution108);

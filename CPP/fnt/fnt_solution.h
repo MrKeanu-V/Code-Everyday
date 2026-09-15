@@ -106,20 +106,33 @@ private:
 } // namespace fnt
 
 // ============================================================
-// FNT_REGISTER(cls_name) — 工厂注册宏
+// FNT_SOLUTION_KEY(sln) / FNT_REGISTER(cls_name) — 题解注册
 // 用法：
-//   class Solution19 : public BaseSolution { ... };
-//   FNT_REGISTER(Solution19);
-// 宏自动推断 key（通过 cls_name::sln_##cls_name##Key 静态成员）
-// 注册一个工厂 lambda 到 FntApp，运行时会 new cls_name → test() → delete
+//   class Solution19 : public BaseSolution {
+//   public:
+//       FNT_SOLUTION_KEY("19")                      // 类内声明 key（public 区域）
+//
+//       void test() override { ... }                // 题解实现与测试
+//   };
+//
+//   FNT_REGISTER(Solution19);                       // 类外注册工厂（文件/命名空间作用域）
+//
+// 注册表只存工厂函数（lambda），实例在 FntApp::Execute / RunAll 时按需 new，
+// 用完立即 delete，实现「懒加载」。
 // ============================================================
-
-#define FNT_CONCAT_IMPL(a, b) a##b
-#define FNT_CONCAT(a, b) FNT_CONCAT_IMPL(a, b)
 
 // 每个派生类需在 public 区域声明此宏，提供静态 key 字符串
 #define FNT_SOLUTION_KEY(sln) \
     static const string& Key() { static string k = sln; return k; }
 
-#define FNT_REGISTER(cls_name) \
-fnt::FntApp::Instance().Register(cls_name::Key(), []() -> fnt::BaseSolution* { return new cls_name(); });
+// FNT_REGISTER(cls_name) — 在类外注册工厂函数
+#define FNT_REGISTER(cls_name)                                                     \
+    namespace {                                                                    \
+        struct FntRegistrar_##cls_name {                                           \
+            FntRegistrar_##cls_name() {                                            \
+                fnt::FntApp::Instance().Register(cls_name::Key(),                   \
+                    []() -> fnt::BaseSolution* { return new cls_name(); });         \
+            }                                                                      \
+        };                                                                         \
+        const FntRegistrar_##cls_name fntRegistrar_##cls_name{};                    \
+    }

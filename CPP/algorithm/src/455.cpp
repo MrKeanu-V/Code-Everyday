@@ -1,11 +1,13 @@
 /*
 455. Assign Cookies [Easy - 3]
 */
-#include "fnt_solution.h"
-#include "fnt_utils.h"
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
 
-class Solution455 {
+class Solution455 : public fnt::BaseSolution {
 public:
+    FNT_SOLUTION_KEY("455")
+
     int findContentChildren(vector<int>& g, vector<int>& s) {
         sort(g.begin(), g.end(), std::greater<int>());
         sort(s.begin(), s.end(), std::greater<int>());
@@ -18,7 +20,7 @@ public:
         return jdx;
     }
 
-    void test() {
+    void test() override {
         vector<int> g = { 1,2,3 };
         vector<int> s = { 1,1 };
         cout << findContentChildren(g, s) << endl;
@@ -28,12 +30,4 @@ public:
     }
 };
 
-struct Solution455Register {
-    Solution455Register() {
-        Solution455 s;
-        fnt::RegisterSolution("455", [&s] { s.test(); });
-    }
-};
-
-// 455
-static Solution455Register __reg455;
+FNT_REGISTER(Solution455);

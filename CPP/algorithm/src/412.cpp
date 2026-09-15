@@ -1,11 +1,14 @@
 /*
 412. Fizz Buzz [Easy - 2]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution412 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("412")
+
     vector<string> fizzBuzz(int n) {
         vector<string> res(n + 1);
         for (int i = 1; i <= n; i++) {
@@ -16,4 +19,12 @@ public:
         }
         return res;
     }
+
+    void test() override {
+        int n = 15;
+        vector<string> res = fizzBuzz(n);
+        printVector1D(res);
+    }
 };
+
+FNT_REGISTER(Solution412);

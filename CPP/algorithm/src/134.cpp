@@ -1,11 +1,14 @@
 /*
 134. Gas Station [Medium - 6]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution134 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("134")
+
 	// 解法一 Greedy
 	int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
 		// gas = [1,2,3,4,5], cost = [3,4,5,1,2]
@@ -20,4 +23,15 @@ public:
 		}
 		return start;
 	}
+
+	void test() override {
+		vector<int> gas = { 1,2,3,4,5 };
+		vector<int> cost = { 3,4,5,1,2 };
+		cout << canCompleteCircuit(gas, cost) << endl;    // 3
+		gas = { 2,3,4 };
+		cost = { 3,4,3 };
+		cout << canCompleteCircuit(gas, cost) << endl;    // -1
+	}
 };
+
+FNT_REGISTER(Solution134);

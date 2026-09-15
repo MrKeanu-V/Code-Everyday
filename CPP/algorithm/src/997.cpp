@@ -1,10 +1,13 @@
 /*
 997. Find the Town Judge [Esay - 3]
 */
-#include "pub_template.h"
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution997 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("997")
     // 解法一 暴力法 Time:O(m+n) Space:O(n) 
     int findJudge_1(int n, vector<vector<int>>& trust) {
         vector<vector<int>> trust_count(n + 1, vector<int>(2, 0));//分别表示出度 入度
@@ -31,7 +34,7 @@ public:
         }
         return -1;
     }
-    void test() {
+    void test() override {
         vector<vector<int>> trust1 = {{1,2}};
         vector<vector<int>> trust2 = { {1,3},{2,3} };
         vector<vector<int>> trust3 = {{1,3},{2,3},{3,1}};
@@ -41,7 +44,4 @@ public:
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution997);

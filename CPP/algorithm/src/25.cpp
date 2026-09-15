@@ -1,13 +1,15 @@
 /*
 25. Reverse nodes in k-group [Hard - 4]
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 using namespace fnt;
 
-class Solution25
+class Solution25 : public BaseSolution
 {
 public:
+    FNT_SOLUTION_KEY("25")
+
     ListNode* reverseKGroup(ListNode* head, int k)
     {
         if (k == 1)
@@ -41,7 +43,7 @@ public:
         return dummy->next;
     }
 
-    void test()
+    void test() override
     {
         cout << " 25. Reverse nodes in k-group [Hard - 4 - ListNode] " << endl;
         // makeup data
@@ -58,12 +60,4 @@ public:
     }
 };
 
-// RAII Register
-struct Solution25Register {
-    Solution25Register() {
-        Solution25 s;
-        fnt::RegisterSolution("25", [&s]() { s.test(); });
-    }
-};
-
-static Solution25Register __reg25;
+FNT_REGISTER(Solution25);

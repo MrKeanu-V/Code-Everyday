@@ -1,11 +1,14 @@
 /*
 477. Total Hamming Distance [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution477 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("477")
+
 	int hammingDistance(int x, int y) {
 		int res = 0, s = x ^ y;
 		while (s) {
@@ -14,7 +17,7 @@ public:
 		}
 		return res;
 	}
-	// ½â·¨Ò»£º±©Á¦ ³¬Ê± Time:O(n^2) Space:O(1)
+	// è§£æ³•ä¸€ï¼šæš´åŠ› è¶…æ—¶ Time:O(n^2) Space:O(1)
 	int totalHammingDistance_1(vector<int>& nums) {
 		int res = 0, n = nums.size();
 		for (int i = 0; i < n; i++) {
@@ -24,7 +27,7 @@ public:
 		}
 		return res;
 	}
-	// ½â·¨¶þ ÊýÑ§+Î»ÔËËã Time:O(n) Space:O(1)
+	// è§£æ³•äºŒ æ•°å­¦+ä½è¿ç®— Time:O(n) Space:O(1)
 	int totalHammingDistance(vector<int>& nums) {
 		int res = 0, n = nums.size();
 		for (int i = 0; i < 30; i++) {
@@ -36,4 +39,13 @@ public:
 		}
 		return res;
 	}
+
+	void test() override {
+		vector<int> nums = { 4,14,2 };
+		cout << totalHammingDistance(nums) << endl;    // 6
+		nums = { 4,14,4 };
+		cout << totalHammingDistance(nums) << endl;    // 4
+	}
 };
+
+FNT_REGISTER(Solution477);

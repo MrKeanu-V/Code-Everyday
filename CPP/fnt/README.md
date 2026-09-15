@@ -41,8 +41,8 @@ main() → FntApp::Instance().Run()
 
 ```cpp
 // algorithm/src/1.cpp — Two Sum
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 #include <vector>
 using namespace std;
 using namespace fnt;
@@ -76,16 +76,29 @@ FNT_REGISTER(Solution1);
 
 ### 2. 编译
 
+由 CMake 统一管理：`fnt` 被编成静态库，再被题解 target 链接（顶层项目 = `CPP/CMakeLists.txt`）：
+
 ```bash
 cd CPP
-g++ -std=c++20 -I. main.cpp fnt/*.cpp algorithm/src/*.cpp -o main
+cmake --preset gcc16                            # 配置
+cmake --build --preset gcc16 --target fnt       # 只编译框架库
+cmake --build --preset gcc16                    # 编译全部 -> build/gcc16/solutions
+```
+
+`fnt` 以 `PUBLIC` 方式导出头文件搜索路径，所以链接它的题解可以直接写
+`#include "fnt/fnt_utils.h"`，无需再手写 `-I`：
+
+```cmake
+add_library(fnt STATIC fnt/fnt_utils.cpp fnt/fnt_solution.cpp)
+target_include_directories(fnt PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})   # 即 CPP/
 ```
 
 ### 3. 运行
 
 ```bash
-./main
+./build/gcc16/solutions        # 按提示输入题号
 ```
+
 
 ---
 
@@ -114,3 +127,4 @@ int main() {
     FntApp::Instance().Run();
     return 0;
 }
+```

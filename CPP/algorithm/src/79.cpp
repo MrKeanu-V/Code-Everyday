@@ -1,11 +1,14 @@
 /*
 79. Word Search [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution79 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("79")
+
     // 解法一 DFS
     bool exist_1(vector<vector<char>>& board, string word) {
         string path;
@@ -69,4 +72,13 @@ public:
                 if (dfs(0, i,j)) return true;
         return false;
     }
+
+    void test() override {
+        vector<vector<char>> board = { {'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'} };
+        cout << exist(board, "ABCCED") << endl; // true
+        cout << exist(board, "SEE") << endl; // true
+        cout << exist(board, "ABCB") << endl; // false
+    }
 };
+
+FNT_REGISTER(Solution79);

@@ -1,13 +1,16 @@
 /*
 LC Valid isAnagram [https://leetcode.cn/leetbook/read/top-interview-questions-easy/xn96us/]
 */
-#include "pub_template.h"
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution_LC_String_01 : public BaseSolution {
 private:
     int arr[26] = { 0 };
 public:
-    // ¹þÏ£ Time:O(n) Space:O(1)
+    FNT_SOLUTION_KEY("LC_String_01")
+    // å“ˆå¸Œ Time:O(n) Space:O(1)
     bool isAnagram(string s, string t) {
         int size_s = s.size(), size_t = t.size();
         if (size_s != size_t) return false;
@@ -20,7 +23,7 @@ public:
         return true;
     }
 
-    void test() {
+    void test() override {
         string s = "rat";
         string t = "cat";
         string ans = isAnagram(s, t) ? "true" : "false";
@@ -28,7 +31,4 @@ public:
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution_LC_String_01);

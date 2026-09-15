@@ -1,11 +1,14 @@
 /*
 LCR.157. Full String Permutations [Medium]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution_LCR157 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("LCR157")
+
     vector<string> goodsOrder(string goods) {
         vector<string> res;
         int n = goods.size();
@@ -27,4 +30,14 @@ public:
         dfs(0);
         return res;
     }
+
+    void test() override {
+        string goods = "abc";
+        vector<string> res = goodsOrder(goods);
+        printVector1D(res);    // ["abc","acb","bac","bca","cab","cba"]
+        goods = "aab";
+        res = goodsOrder(goods);
+        printVector1D(res);    // ["aab","aba","baa"]
+    }
 };
+FNT_REGISTER(Solution_LCR157);

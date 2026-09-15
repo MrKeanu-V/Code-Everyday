@@ -1,13 +1,16 @@
 /*
 131. Palindrome Partitioning [Medium - 5]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution131 : public BaseSolution {
 private:
     vector<vector<int>> dp;
 public:
+    FNT_SOLUTION_KEY("131")
+
     // 解法一 回溯+动规 Time: O(n*2^n) Space: O(n*2^n)
     vector<vector<string>> partition(string s) {
         int n = s.size();
@@ -32,4 +35,12 @@ public:
         dfs(0);
         return res;
     }
+
+    void test() override {
+        string s = "aab";
+        vector<vector<string>> res = partition(s);
+        printVector2D(res);    // [["a","a","b"],["aa","b"]]
+    }
 };
+
+FNT_REGISTER(Solution131);

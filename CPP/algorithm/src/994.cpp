@@ -2,10 +2,14 @@
 994. Rotting Oranges [Medium - 1433]
 */
 
-#include "pub_template.h"
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
+using namespace std;
 
-class Solution {
+class Solution994 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("994")
     // Solution1: BFS Time: O(MN) Space: O(MN)
     int orangesRotting_1(vector<vector<int>>& grid) {
         queue<pair<int, int>> q;
@@ -66,14 +70,14 @@ public:
                     }
                 }
             }
-            q = move(nxt);  // move() is faster than assign()
+            q = std::move(nxt);  // move() is faster than assign()
             step++;
         }
 
         return fresh ? -1 : step;
     }
 
-    void test() {
+    void test() override {
         vector<vector<int>> grid = {{2,1,1},{1,1,0},{0,1,1}};
         printf("Result: %d\n", orangesRotting(grid));
 
@@ -85,7 +89,4 @@ public:
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution994);

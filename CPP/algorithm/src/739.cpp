@@ -1,12 +1,15 @@
 /*
 739. Daily Temperatures [Medium - 6]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution739 : public BaseSolution {
 public:
-	// ½â·¨Ò» ±©Á¦+ÄæÏò±éÀú Time: O(n^2), Space: O(1)
+    FNT_SOLUTION_KEY("739")
+
+	// è§£æ³•ä¸€ æš´åŠ›+é€†å‘éå† Time: O(n^2), Space: O(1)
 	vector<int> dailyTemperatures_1(vector<int>& T) {
 		int n = T.size();
 		vector<int> res(n, 0), next(101, INT_MAX);
@@ -19,7 +22,7 @@ public:
 		return res;
 	}
 
-	// ½â·¨¶ş µ¥µ÷Õ»+ÕıÏò±éÀú Time: O(n), Space: O(n)
+	// è§£æ³•äºŒ å•è°ƒæ ˆ+æ­£å‘éå† Time: O(n), Space: O(n)
 	vector<int> dailyTemperatures(vector<int>& T) {
 		int n = T.size();
 		vector<int> res(n, 0);
@@ -37,13 +40,10 @@ public:
 		return res;
 	}
 
-	void test() {
+	void test() override {
 		vector<int> T = { 73, 74, 75, 71, 69, 72, 76, 73 };
 		printVector1D(dailyTemperatures(T));
 	}
 };
 
-//int main() {
-//	Solution().test();
-//	return 0;
-//}
+FNT_REGISTER(Solution739);

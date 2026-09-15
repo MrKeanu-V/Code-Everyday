@@ -4,8 +4,8 @@
 @Description: Leetcode 3. Longest Substring Without Repeating Characters [Medium]
 @History: Original creation — brute force + sliding window solutions.
 */
-#include "fnt_utils.h"
-#include "fnt_solution.h"
+#include "fnt/fnt_utils.h"
+#include "fnt/fnt_solution.h"
 #include <string>
 #include <vector>
 #include <unordered_set>

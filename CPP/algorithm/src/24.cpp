@@ -1,11 +1,14 @@
 /*
 24. Swap Nodes in Pairs [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution24 : public BaseSolution {
 public:
+	FNT_SOLUTION_KEY("24")
+
 	// 解法一 递推 Time:O(n) Space:O(1)
 	ListNode* swapPairs_1(ListNode* head) {
 		if (head == nullptr || head->next == nullptr) return head;
@@ -43,4 +46,19 @@ public:
 		node2->next = node1;
 		return node2;
 	}
+
+	void test() override {
+		cout << " 24. Swap Nodes in Pairs [Medium - 4 - ListNode] " << endl;
+		// makeup data
+		std::vector<int> data = { 1, 2, 3, 4 };
+		ListNode* head = fnt::createList(data);
+		fnt::printList(head);
+		ListNode* res = swapPairs(head);
+		fnt::printList(res);
+		// release memory
+		fnt::freeList(head);
+		fnt::freeList(res);
+	}
 };
+
+FNT_REGISTER(Solution24);

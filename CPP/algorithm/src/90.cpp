@@ -1,11 +1,14 @@
 /*
 90. Subsets II [Medium - 5]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution90 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("90")
+
     // 解法一 回溯 选或不选 Time:O(2^n) Space:O(n)
     void backtrack_1(vector<vector<int>>& res, vector<int>& nums, vector<int>& path, int start) {
         if (start == nums.size()) return res.push_back(path);
@@ -37,4 +40,12 @@ public:
         backtrack(res, nums, path, 0);
         return res;
     }
+
+    void test() override {
+        vector<int> nums = { 1, 2, 2 };
+        vector<vector<int>> res = subsetsWithDup(nums);
+        printVector2D(res);    // [[],[1],[1,2],[1,2,2],[2],[2,2]]
+    }
 };
+
+FNT_REGISTER(Solution90);

@@ -2,12 +2,15 @@
 LC Realize strStr() [Esay]
 */
 
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution_LCString03 : public BaseSolution {
 public:
-	// ½â·¨Ò» ±©Á¦·¨ Time:O(n*m) Space:O(1)
+    FNT_SOLUTION_KEY("LCString03")
+
+	// è§£æ³•ä¸€ æš´åŠ›æ³• Time:O(n*m) Space:O(1)
 	int strStr_1(string haystack, string needle) {
 		int len1 = haystack.size(), len2 = needle.size();
 		for (int i = 0; i < len1; i++) {
@@ -25,12 +28,12 @@ public:
 		}
 		return -1;
 	}
-	// ½â·¨¶þ KMPËã·¨ Time:O(n+m) Space:O(m)
+	// è§£æ³•äºŒ KMPç®—æ³• Time:O(n+m) Space:O(m)
 	int strStr(string haystack, string needle) {
         return haystack.find(needle);
 	}
 
-	void test() {
+	void test() override {
 		string haystack = "leetcode";
 		string needle = "leeto";
 		cout << strStr(haystack, needle) << endl;
@@ -40,7 +43,4 @@ public:
 	}
 };
 
-//int main() {
-//	Solution().test();
-//	return 0;
-//}
+FNT_REGISTER(Solution_LCString03);

@@ -1,12 +1,14 @@
 /*
 LC Realize strStr() [Esay]
 */
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-#include "pub_template.h"
-using namespace pub;
-
-class Solution {
+class Solution_LCP01 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("LCP01")
+
 	// 解法一 暴力法 Time:O(n*m) Space:O(1)
 	int strStr_1(string haystack, string needle) {
 		int len1 = haystack.size(), len2 = needle.size();
@@ -30,7 +32,7 @@ public:
         return haystack.find(needle);
 	}
 
-	void test() {
+	void test() override {
 		string haystack = "leetcode";
 		string needle = "leeto";
 		cout << strStr(haystack, needle) << endl;
@@ -40,6 +42,7 @@ public:
 	}
 };
 
+FNT_REGISTER(Solution_LCP01);
 //int main() {
 //	Solution().test();
 //	return 0;

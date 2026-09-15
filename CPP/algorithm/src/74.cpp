@@ -1,11 +1,14 @@
 /*
 74. Search a 2D Matrix [Medium - 3]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution74 : public BaseSolution {
 public:
+	FNT_SOLUTION_KEY("74")
+
 	// 解法一 二分查找 Time:O(logn) Space:O(1)
 	bool searchMatrix(vector<vector<int>>& matrix, int target) {
 		if (matrix.empty() || matrix[0].empty()) return false;
@@ -44,7 +47,7 @@ public:
 		return false;
 	}
 
-	void test() {
+	void test() override {
 		vector<vector<int>> matrix = { {1,3,5,7},{10,11,16,20},{23,30,34,60} };
 		cout << searchMatrix(matrix, 3) << endl;
 		cout << searchMatrix(matrix, 13) << endl;
@@ -59,3 +62,5 @@ public:
 //	Solution().test();
 //	return 0;
 //}
+
+FNT_REGISTER(Solution74)

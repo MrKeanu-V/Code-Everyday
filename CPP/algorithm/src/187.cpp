@@ -1,10 +1,14 @@
 /*
 187. Repeated DNA Sequences [Medium - 4]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution187 : public BaseSolution {
+public:
+    FNT_SOLUTION_KEY("187")
+
 private:
     unordered_map<char, int> bin = { {'A', 0}, {'C', 1}, {'G', 2}, {'T', 3} };
 public:
@@ -31,4 +35,11 @@ public:
         }
         return res;
     }
+
+    void test() override {
+        string s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
+        vector<string> res = findRepeatedDnaSequences(s);
+        printVector1D(res);    // ["AAAAACCCCC","CCCCCAAAAA"]
+    }
 };
+FNT_REGISTER(Solution187);

@@ -1,11 +1,14 @@
 /*
 190. Reverse Bits [Easy - 2]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution190 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("190")
+
     // 解法一 逐位运算 Time:O(32) Space:O(1)
     uint32_t reverseBits_1(uint32_t n) {
         uint32_t ans = 0, i = 32;
@@ -24,4 +27,11 @@ public:
         n = ((n & 0xaaaaaaaa) >> 1) | ((n & 0x55555555) << 1);
         return n;
     }
+
+    void test() override {
+        uint32_t n = 43261596;
+        cout << reverseBits(n) << endl;    // 964176192
+    }
 };
+
+FNT_REGISTER(Solution190);

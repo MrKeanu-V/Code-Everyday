@@ -1,11 +1,14 @@
 /*
 38. Count and Say [Medium - 3]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution38 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("38")
+
     string RLE(string num) {
         string res;
         for (int i = 0; i < num.length(); i++) {
@@ -30,14 +33,11 @@ public:
         return res[n - 1];
     }
 
-    void test() {
+    void test() override {
         cout << countAndSay(1) << endl;
         cout << countAndSay(4) << endl;
         cout << countAndSay(5) << endl;
     }
 };
 
-//int main() {
-//    Solution().test();
-//    return 0;
-//}
+FNT_REGISTER(Solution38);

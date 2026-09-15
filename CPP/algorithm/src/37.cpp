@@ -1,10 +1,11 @@
 /*
 37. Sudoku Solver [Hard - 7]
 */
-#include "pub_template.h"
-using namespace pub;
+#include "fnt/fnt_solution.h"
+#include "fnt/fnt_utils.h"
+using namespace fnt;
 
-class Solution {
+class Solution37 : public BaseSolution{
 private:
 	bool CheckNum(vector<vector<char>>& board, int row, int col, char val) {
 		for (int i = 0; i < 9; i++)
@@ -20,6 +21,7 @@ private:
 		int row_start = row / 3 * 3, col_start = col / 3 * 3;
 		for (int i = 0; i < 9; i++)
 			if (board[row][i] == val || board[i][col] == val || board[row_start + i / 3][col_start + i % 3] == val) return false;
+		return true;
 	}
 
 	int row[9], col[9], block[3][3];
@@ -30,6 +32,8 @@ private:
 		block[i / 3][j / 3] ^= (1 << val);
 	}
 public:
+	FNT_SOLUTION_KEY("37")
+
 	// 解法一 回溯 Time:O(9^81) Space:O(1)
 	void solveSudoku(vector<vector<char>>& board) {
 		function<bool(int, int)> dfs = [&](int r, int c)->bool {
@@ -122,7 +126,7 @@ public:
 		dfs(0);
 	}
 
-	void test() {
+	void test() override {
         vector<vector<char>> board = { {'5','3','.','.','7','.','.','.','.'},
                                       {'6','.','.','1','9','5','.','.','.'},
                                       {'.','9','8','.','.','.','.','6','.'},
@@ -137,7 +141,4 @@ public:
 	}
 };
 
-//int main() {
-//	Solution().test();
-//	return 0;
-//}
+FNT_REGISTER(Solution37);
