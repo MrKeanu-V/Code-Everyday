@@ -1,0 +1,42 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 20, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "gcc16",
+      "displayName": "GCC 16 / C++20 / Debug",
+      "description": "Homebrew g++-16，严格 C++20（-std=c++20），含调试信息",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/gcc16",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "/opt/homebrew/bin/g++-16",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "clang",
+      "inherits": "gcc16",
+      "displayName": "Apple Clang / C++20 / Debug",
+      "description": "与 gcc16 共用源码，用于对比两套工具链的告警/汇编/行为",
+      "binaryDir": "${sourceDir}/build/clang",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "gcc16-rel",
+      "inherits": "gcc16",
+      "displayName": "GCC 16 / C++20 / Release(-O2)",
+      "description": "用于查看优化后的代码生成（配合 -S 汇编对比）",
+      "binaryDir": "${sourceDir}/build/gcc16-rel",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    { "name": "gcc16", "configurePreset": "gcc16" },
+    { "name": "clang", "configurePreset": "clang" },
+    { "name": "gcc16-rel", "configurePreset": "gcc16-rel" }
+  ]
+}
