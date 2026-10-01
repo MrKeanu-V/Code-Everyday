@@ -25,7 +25,7 @@ set(CMAKE_CXX_EXTENSIONS OFF CACHE BOOL "关闭 GNU 扩展（-std=c++20 而非 g
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 可选：严格告警（默认关，避免迁移期间刷屏）
-option(LAB_STRICT_WARNINGS "开启 -Wall -Wextra" OFF)
+option(LAB_STRICT_WARNINGS "开启 -Wall -Wextra" ON)
 
 # ---------- 1) fnt 基础库 ----------
 add_library(fnt STATIC
