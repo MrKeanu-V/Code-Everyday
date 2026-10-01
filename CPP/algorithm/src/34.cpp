@@ -5,9 +5,12 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
+#include <fnt/fnt_solution.h>
+#include <fnt/fnt_utils.h>
+using namespace fnt;
 using namespace std;
 
-class Solution {
+class Solution34 : public BaseSolution {
 private:
 	int lowerBound(vector<int>& nums, int target) {
 		int left = -1, right = (int)nums.size();
@@ -37,6 +40,7 @@ private:
 		return left;
 	}
 public:
+	FNT_SOLUTION_KEY("34")
 	// 二分查找 变体
 	vector<int> searchRange(vector<int>& nums, int target) {
 		int left = lowerBound(nums, target);
@@ -63,13 +67,13 @@ public:
 		res[1] = left - 1;
 		return res;
 	}
+
+	void test() override {
+		vector<int> nums = { 0,1,2,3,4,5,6,7,7,7,7,7,8,8,14 };
+		int target = 7;
+		vector<int> ans = searchRange(nums, target);
+		cout << ans[0] << " " << ans[1] << endl;
+	}
 };
 
-int main() {
-	Solution sln;
-	vector<int> nums = { 0,1,2,3,4,5,6,7,7,7,7,7,8,8,14 };
-	int target = 7;
-	vector<int> ans = sln.searchRange(nums, target);
-	cout << ans[0] << " " << ans[1] << endl;
-	return 0;
-}
+FNT_REGISTER(Solution34);

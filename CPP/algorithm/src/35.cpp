@@ -5,10 +5,14 @@
 #include <vector>
 #include <algorithm>
 #include <queue>
+#include <fnt/fnt_solution.h>
+#include <fnt/fnt_utils.h>
+using namespace fnt;
 using namespace std;
 
-class Solution {
+class Solution35 : public BaseSolution {
 public:
+	FNT_SOLUTION_KEY("35")
 	int searchInsert(vector<int>& nums, int target) {
 		int left = 0, right = nums.size() - 1;
 		while (left <= right) {
@@ -18,12 +22,12 @@ public:
 		}
 		return left;
 	}
+
+	void test() override {
+		vector<int> nums = { 1,3,5,6 };
+		int target = 2;
+		cout << searchInsert(nums, target) << endl;
+	}
 };
 
-int main() {
-    Solution s;
-	vector<int> nums = { 1,3,5,6 };
-	int target = 2;
-	cout << s.searchInsert(nums, target) << endl;
-	return 0;
-}
+FNT_REGISTER(Solution35);

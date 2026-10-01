@@ -1,5 +1,5 @@
 /*
-面试题 16.19. Pond Sizes Icci
+Interview 16.19. Pond Sizes Icci
 */
 #include <iostream>
 #include <vector>
@@ -12,9 +12,20 @@
 #include <map>
 #include <unordered_set>
 #include <unordered_map>
+#include <fnt/fnt_solution.h>
+#include <fnt/fnt_utils.h>
+using namespace fnt;
 using namespace std;
 
-class Solution {
+class Solution16_19 : public BaseSolution {
+public:
+	void test() override {
+		vector<vector<int>> land = { {0,2,1,0},{0,1,0,1},{1,1,0,1},{0,1,0,1} };
+		vector<int> sizes = pondSizes(land);
+		for (auto& size : sizes) cout << size << " ";
+		cout << endl;
+	}
+	FNT_SOLUTION_KEY("16.19") // 类内声明 key（public 区域）
 private:
 	int row, col;
 	vector<vector<int>> dirs = { {-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1} };
@@ -43,10 +54,4 @@ public:
 	}
 };
 
-int main() {
-	Solution sln;
-	vector<vector<int>> land = { {0,2,1,0},{0,1,0,1},{1,1,0,1},{0,1,0,1} };
-	vector<int> sizes = sln.pondSizes(land);
-	for (auto& size : sizes) cout << size << " ";
-	return 0;
-}
+FNT_REGISTER(Solution16_19)

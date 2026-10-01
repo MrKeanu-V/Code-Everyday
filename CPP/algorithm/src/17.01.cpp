@@ -1,5 +1,5 @@
 /*
-17.01. Add Without Plus Icci [Esay]
+Interview 17.01. Add Without Plus Icci [Esay]
 */
 #include <iostream>
 #include <vector>
@@ -13,10 +13,15 @@
 #include <unordered_set>
 #include <map>
 #include <set>
+#include <fnt/fnt_solution.h>
+#include <fnt/fnt_utils.h>
+using namespace fnt;
 using namespace std;
 
-class Solution {
+class Solution17_01 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("17.01")
+
 	int add1(int a, int b) {
 		constexpr int mask = 1;
 		int carry = 0;
@@ -38,11 +43,13 @@ public:
 		}
 		return a;
 	}
+
+	void test() override {
+		cout << add(1, 2) << endl;
+		cout << add(2, 3) << endl;
+		cout << add(-1, 1) << endl;
+		cout << add(-2, -3) << endl;
+	}
 };
 
-int main() {
-	Solution sln;
-	int a = 1, b = 2;
-	cout << sln.add(a, b) << endl;
-	return 0;
-}
+FNT_REGISTER(Solution17_01)

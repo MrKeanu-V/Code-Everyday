@@ -1,5 +1,5 @@
 /*
-21. Merge Two Sorted Lists [Easy - 3]
+LeetCode 21. Merge Two Sorted Lists [Easy - 3]
 */
 #include <iostream>
 #include <vector>
@@ -17,18 +17,23 @@
 #include <numeric>
 #include <climits>
 #include <cmath>
+#include <fnt/fnt_solution.h>
+#include <fnt/fnt_utils.h>
+using namespace fnt;
 using namespace std;
 
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) :val(x), next(nullptr) {}
-    ListNode(int x, ListNode* next) : val(x), next(next) {}
-};
+// struct ListNode {
+//     int val;
+//     ListNode* next;
+//     ListNode() : val(0), next(nullptr) {}
+//     ListNode(int x) :val(x), next(nullptr) {}
+//     ListNode(int x, ListNode* next) : val(x), next(next) {}
+// };
 
-class Solution {
+class Solution21 : public BaseSolution {
 public:
+    FNT_SOLUTION_KEY("21")
+
     // 解法一 迭代
     ListNode* mergeTwoLists_1(ListNode* list1, ListNode* list2) {
         ListNode* head = nullptr, * tail = nullptr;
@@ -108,21 +113,14 @@ public:
         }
         cout << endl;
     }
-    void test() {
+    void test() override {
         ListNode* list1 = new ListNode(1, new ListNode(2, new ListNode(4)));
         ListNode* list2 = new ListNode(1, new ListNode(3, new ListNode(4)));
-        ListNode* root = Solution().mergeTwoLists(list1, list2);
+        ListNode* root = Solution21().mergeTwoLists(list1, list2);
         printList(list1);
         printList(list2);
         printList(root);
     }
 };
 
-
-
-
-
-//int main() {
-//    test();
-//    return 0;
-//}
+FNT_REGISTER(Solution21);
