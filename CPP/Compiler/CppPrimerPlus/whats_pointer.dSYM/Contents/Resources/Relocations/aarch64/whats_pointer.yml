@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/keanu/Workspace/Personal/Code-Everyday/CPP/Compiler/CppPrimerPlus/whats_pointer'
+relocations:     []
+...

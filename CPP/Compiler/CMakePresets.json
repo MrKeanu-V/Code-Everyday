@@ -1,0 +1,43 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 20, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "gcc16",
+      "displayName": "GCC 16 / C++20",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/gcc16",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "/opt/homebrew/bin/g++-16",
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "clang",
+      "inherits": "gcc16",
+      "displayName": "Apple Clang / C++20",
+      "binaryDir": "${sourceDir}/build/clang",
+      "cacheVariables": { "CMAKE_CXX_COMPILER": "clang++" }
+    },
+    {
+      "name": "gcc16-cxx17",
+      "inherits": "gcc16",
+      "displayName": "GCC 16 / C++17（新特性对比，如 char8_t）",
+      "binaryDir": "${sourceDir}/build/gcc16-cxx17",
+      "cacheVariables": { "CMAKE_CXX_STANDARD": "17" }
+    },
+    {
+      "name": "clang-cxx17",
+      "inherits": "clang",
+      "displayName": "Apple Clang / C++17",
+      "binaryDir": "${sourceDir}/build/clang-cxx17",
+      "cacheVariables": { "CMAKE_CXX_STANDARD": "17" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "gcc16", "configurePreset": "gcc16" },
+    { "name": "clang", "configurePreset": "clang" },
+    { "name": "gcc16-cxx17", "configurePreset": "gcc16-cxx17" },
+    { "name": "clang-cxx17", "configurePreset": "clang-cxx17" }
+  ]
+}
